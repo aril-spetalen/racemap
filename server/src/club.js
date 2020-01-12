@@ -5,7 +5,8 @@ let month = null;
 let countryCode = 'NOR';
 const baseURL = 'https://manage2sail.com';
 let urls = [`https://manage2sail.com/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=1`,
-            `https://manage2sail.com/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=2`];
+            `https://manage2sail.com/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=2`,
+            `https://manage2sail.com/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=3`];
 
 class Club {
   constructor(name, id, webSiteM2S) {
@@ -111,7 +112,7 @@ requestPromise(urls[0])
     // success!
     let c = getClubs(html);
     //console.log(c);
-    //console.log("number of clubs listed for 2020:", c.length);
+    // console.log("number of clubs listed at given url:", c.length);
     return c;
   })
   .catch(function(err){

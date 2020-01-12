@@ -148,5 +148,21 @@ Promise.all([promiseList]).then((arrList)=>{
 
 */ 
 
-// let async coord = () => await yr.coordinates(['Oslo', "aalesund"]);
-// console.log(coord);
+/*
+await yr.coordinates(document.locations);
+let async coord = () => await yr.coordinates(['Oslo', "aalesund"]);
+console.log(coord);
+*/
+
+export const findLocation = {
+  forClub: async (address) => {
+    //console.log('now finding coords for club');
+    const coordinates = await yr.coordinates(address);
+    //console.log('coordinates:', coordinates);
+
+    return coordinates;
+  }
+};
+
+//findLocation.forClub("oslo");
+

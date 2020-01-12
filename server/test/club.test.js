@@ -1,4 +1,4 @@
-const cf = require('../src/club-finder');
+const cf = require('../src/club');
 const fs = require('fs');
 const path = require('path');
 const mockHtml = fs.readFileSync(path.resolve(__dirname, './m2sClubs1.html'), 'utf8');

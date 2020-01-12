@@ -1,4 +1,4 @@
-const cd = require('../src/club-details');
+const cd = require('../src/details');
 const fs = require('fs');
 const path = require('path');
 const asfFile = fs.readFileSync(path.resolve(__dirname, './aalesundSeilForening.html'), 'utf8');
