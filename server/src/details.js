@@ -154,6 +154,7 @@ let async coord = () => await yr.coordinates(['Oslo', "aalesund"]);
 console.log(coord);
 */
 
+/*
 export const findLocation = {
   forClub: async (address) => {
     //console.log('now finding coords for club');
@@ -163,6 +164,5 @@ export const findLocation = {
     return coordinates;
   }
 };
-
-//findLocation.forClub("oslo");
+*/
 

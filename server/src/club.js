@@ -4,10 +4,15 @@ let year = 2020;
 let month = null;
 let countryCode = 'NOR';
 const baseURL = 'https://manage2sail.com';
-let urls = [`https://manage2sail.com/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=1`,
+/*
+ * let urls = [`https://manage2sail.com/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=1`,
             `https://manage2sail.com/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=2`,
             `https://manage2sail.com/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=3`];
+*/
 
+export const urls = [`${baseURL}/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=1`,
+            `${baseURL}/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=2`,
+            `${baseURL}/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=3`];
 class Club {
   constructor(name, id, webSiteM2S) {
     this.name = name;
@@ -79,8 +84,7 @@ let getClubLink = (i) => {
 
 let getId = (entity, i) => {
   let href = clubs(`table > tbody > tr:nth-child(${i}) > td:nth-child(${column(entity)}) > a`).attr('href');
-  return href.split('/')[6];
-  //return href;
+  return href.split('/')[4];
 }
 
 export let numClubs = (html) => {
@@ -89,7 +93,7 @@ export let numClubs = (html) => {
 }
 
 export let getClubs = (html) => {
-  let c = [];
+  let c = []
   clubs = parser.load(html); //
   for (var i = 1; i <= numClubs(html); i++) {
     let club = new Club(
@@ -97,6 +101,7 @@ export let getClubs = (html) => {
         getId('name', i),
         getClubLink(i));
         
+    // c[club.id] = club;
     c.push(club);
   }
   // TODO: this does not set postCode persistently:
@@ -106,19 +111,71 @@ export let getClubs = (html) => {
   return c;  
 }
 
+/**
+export let getClubsByUrl = new Promise((resolve, reject, url) => {
+  let htmls = [];
+  let c = []
+
+  requestPromise(url)
+      .then(function(html){
+            htmls.push(html);
+            let clubs = getClubs(html);
+            c = clubs;
+
+            console.log("number of clubs listed at given url:", clubs.length);
+            return c ;
+      })
+      .catch(function(err){
+            // console.log(err);
+            throw(err);
+  }).then( () => {
+     resolve(c);  
+     // TODO understand:
+     // console.log("c is not returned..:", c);
+  });
+  // console.log("final c:", c);
+});
+*/
+/*
+let all = []
+export let allClubs = () => {
+  let c1 = getClubsByUrl(urls[0]);
+  let c2 = getClubsByUrl(urls[1]);
+  let c3 = getClubsByUrl(urls[2]);
+  Promise.all([c1, c2, c3]).then( (values) => {
+    //console.log("returning num clubs a:", all.length);
+    console.log("c1 num clubs:", c1.length);
+    return c1 + c2 + c3;
+  }).then((c) => {
+    all = c1 + c2 + c3;
+    return c 
+  }).catch((e) => {
+    console.log("error:", e);
+    return e;
+  });
+  // console.log("returning num clubs b:", c1.length);
+  console.log("all:", all);
+  return all 
+}
+*/
+
+// ???urls.forEach(url) (() => {
+// }
 
 requestPromise(urls[0])
   .then(function(html){
-    // success!
     let c = getClubs(html);
-    //console.log(c);
+    // console.log(c['b346dfdc-4d8b-47a3-a101-787d395c8711']);
+    // console.log(c['b346dfdc-4d8b-47a3-a101-787d395c8711'].id);
     // console.log("number of clubs listed at given url:", c.length);
+    // console.log(c);
     return c;
   })
   .catch(function(err){
-    // handle error
     // console.log(err);
     throw(err);
 });
 
 
+// getClubsByUrl(urls[0])
+// allClubs();
