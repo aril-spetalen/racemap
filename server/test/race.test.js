@@ -23,6 +23,10 @@ test('second regatta has Id == bbe2b4be-4b29-4791-bc5b-dada0c6212bf', () => {
   expect(r[1].regId).toBe('bbe2b4be-4b29-4791-bc5b-dada0c6212bf');
 });
 
+test('second regatta has clubId == 1a0afe58-4bce-49b0-8b1d-a88d655e3f57', () => {
+  expect(r[1].clubId).toBe('1a0afe58-4bce-49b0-8b1d-a88d655e3f57');
+});
+
 test('last regatta should have toDate == 20.09.', () => {
   expect(r[22].toDate).toBe('20.09.');
 });

@@ -6,7 +6,7 @@ let countryCode = 'NOR';
 let url = `https://manage2sail.com/no/search?filterYear=${year}&filterMonth=${month}&filterCountry=${countryCode}&filterRegion=&filterClass=&filterClubId=&filterScoring=&paged=false&filterText=`;
 
 class Regatta {
-  constructor(year, fromDate, toDate, name, country, place, clubName, regId, link) {
+  constructor(year, fromDate, toDate, name, country, place, clubName, regId, clubId, link) {
     this.year = year;
     this.fromDate = fromDate;
     this.toDate = toDate;
@@ -15,8 +15,15 @@ class Regatta {
     this.place = place;
     this.clubName = clubName;
     this.regId = regId;
+    this.clubId = clubId;
     this.link = link;
   }
+
+  setClubLink(link) {
+    this.clubLink = link;
+  }
+
+
 }
 
 let regattas;
@@ -72,6 +79,11 @@ let getRegLink = (i) => {
   return href
 }
 
+let getClubId = (i) => {
+  let href = regattas(`div.loadable > div > table > tbody > tr:nth-child(${i}) > td:nth-child(7) > a`).attr('href');
+  return href.split('/')[4];
+}
+
 let getId = (entity, i) => {
   let href = regattas(`div.loadable > div > table > tbody > tr:nth-child(${i}) > td:nth-child(${column(entity)}) > a`).attr('href');
   return href.split('/')[3];
@@ -95,6 +107,7 @@ export let getRegattas = (html) => {
         getData('place', i),
         getData('clubName', i),
         getId('regName', i),
+        getClubId(i),
         getRegLink(i));
 
     r.push(reg);

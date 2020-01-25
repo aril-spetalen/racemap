@@ -10,7 +10,7 @@ const baseURL = 'https://manage2sail.com';
             `https://manage2sail.com/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=3`];
 */
 
-export const urls = [`${baseURL}/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=1`,
+const urls = [`${baseURL}/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=1`,
             `${baseURL}/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=2`,
             `${baseURL}/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=3`];
 class Club {
@@ -23,17 +23,24 @@ class Club {
     // found after a following the webSiteM2S and parse this.
     /*
      * this.address = address;
-    this.postCode = postCode;
-    this.postNumber = postNumber;
-    this.webSite = webSite;
-    this.email = email;
-    this.phone = phone; 
 
     this.coordinates = getCoordinates(this.address); 
     */
   }
   setPostCode(code) {
     this.postCode = code;
+  }
+
+  setWebSite(site) {
+    this.webSite = site;
+  }
+
+  setEmail(email) {
+    this.email = email;
+  }
+
+  setPhone(phone) {
+    this.phone = phone;
   }
 }
 
@@ -73,7 +80,7 @@ let selector = (entity, number) => {
   return `table > tbody > tr:nth-child(${number}) > td > a`;
 }
 
-export let getData = (entity, i) => {
+let getData = (entity, i) => {
   return clubs(selector(entity, i)).text().trim();
 }
 
@@ -87,12 +94,12 @@ let getId = (entity, i) => {
   return href.split('/')[4];
 }
 
-export let numClubs = (html) => {
+let numClubs = (html) => {
   clubs = parser.load(html); //
   return clubs('body > div.container > div.page-content > div.page-block > table > tbody > tr').length
 }
 
-export let getClubs = (html) => {
+let getClubs = (html) => {
   let c = []
   clubs = parser.load(html); //
   for (var i = 1; i <= numClubs(html); i++) {
@@ -111,8 +118,8 @@ export let getClubs = (html) => {
   return c;  
 }
 
-/**
-export let getClubsByUrl = new Promise((resolve, reject, url) => {
+/*
+let getClubsByUrl = new Promise((resolve, reject, url) => {
   let htmls = [];
   let c = []
 
@@ -136,9 +143,10 @@ export let getClubsByUrl = new Promise((resolve, reject, url) => {
   // console.log("final c:", c);
 });
 */
+
 /*
 let all = []
-export let allClubs = () => {
+let allClubs = () => {
   let c1 = getClubsByUrl(urls[0]);
   let c2 = getClubsByUrl(urls[1]);
   let c3 = getClubsByUrl(urls[2]);
@@ -162,20 +170,43 @@ export let allClubs = () => {
 // ???urls.forEach(url) (() => {
 // }
 
-requestPromise(urls[0])
-  .then(function(html){
-    let c = getClubs(html);
-    // console.log(c['b346dfdc-4d8b-47a3-a101-787d395c8711']);
-    // console.log(c['b346dfdc-4d8b-47a3-a101-787d395c8711'].id);
-    // console.log("number of clubs listed at given url:", c.length);
-    // console.log(c);
-    return c;
-  })
-  .catch(function(err){
-    // console.log(err);
-    throw(err);
-});
+/* this works:
+let clubList = []
 
+urls.forEach(url => {
+  requestPromise(url)
+    .then(function(html){
+      let c = getClubs(html);
+      clubList = clubList + getClubs(html);
+      // console.log(c['b346dfdc-4d8b-47a3-a101-787d395c8711']);
+      // console.log(c['b346dfdc-4d8b-47a3-a101-787d395c8711'].id);
+      console.log("number of clubs listed at given url:", c.length);
+      // console.log(clubList);
+      return c;
+
+      // TODO add some details to each club here?
+    })
+    .catch(function(err){
+      // console.log(err);
+      throw(err);
+  });
+})
+console.log(clubList);
+
+*/
 
 // getClubsByUrl(urls[0])
 // allClubs();
+
+module.exports = {
+  getData,
+  numClubs,
+  getClubs
+}
+/*
+export let getData = (entity, i) => {
+let numClubs = (html) => {
+let getClubs = (html) => {
+let getClubsByUrl = new Promise((resolve, reject, url) => {
+let allClubs = () => {
+*/
