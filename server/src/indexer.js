@@ -47,32 +47,26 @@ let clubIndex = {}
 ).then(console.log('clubIndex:', clubIndex)); // nothing here.. wrong scope?
 */
 
-// get all races, in format one could feed to a search index
-console.log('parsing URL:', racesUrl);
-Promise.resolve(requestPromise(racesUrl)
-    .then(function(html){
-          // success!
-          let r = rf.getRegattas(html);
-          // console.log(r);
-          console.log("number of regattas listed for 2020:", r.length);
-          r.forEach((race) => {
-            races[race.regId] = race;
-            races[race.regId].setClubLink(clubLink(race.clubId));
-            //console.log(races[race.regId]);
-          });
-
-          console.log('num races:', Object.keys(races).length);
-          console.log('first:', races[Object.keys(races)[0]]);
-          return;
-      })
-      .catch(function(err){
-          // handle error
-          // console.log(err);
-          throw(err);
+// get all races, in a format one could feed to a search index
+console.log('parsing races URL:', racesUrl);
+Promise.resolve(requestPromise(racesUrl, races)
+  .then(function(html){
+    // success!
+    let r = rf.getRegattas(html);
+    console.log("number of regattas listed for 2020:", r.length);
+    r.forEach((race) => {
+      races[race.regId] = race;
+      races[race.regId].setClubLink(clubLink(race.clubId));
+    });
+    // console.log('num races:', Object.keys(races).length);
+    // console.log('first:', races[Object.keys(races)[0]]);
+    return 0;
+  })
+  .catch(function(err){
+     throw(err);
 })).then(() => { 
-
-  // TODO: add logic here.
-  //console.log('race index now:',races);
+      // TODO: add more logic here.
+      console.log('race index now:',races);
 });
 
   /* 
@@ -90,9 +84,4 @@ Promise.resolve(requestPromise(racesUrl)
    *    ...
    */
   /*
-  
-  });
-}
-
-*/
 
