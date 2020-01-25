@@ -25,15 +25,14 @@ let races = {}
 let clubIndex = {}
 
 // get clubList
-/*Promise.resolve(
-  urls.forEach((url) => {
+urls.forEach( (url) => {
     requestPromise(url)
       .then(function(html){
         let clubs = getClubs(html);
         clubs.forEach(club => {
           clubIndex[club.id] = club;
         })
-        // console.log(clubIndex); correct here????
+        // console.log(clubIndex); // correct here!
         return;
         // TODO add some details to each club here?
         })
@@ -41,11 +40,10 @@ let clubIndex = {}
         console.log(err);
         throw(err);
     });
-  });
-  // console.log(clubIndex);
+}, clubIndex)
   // resolve(clubIndex)
-).then(console.log('clubIndex:', clubIndex)); // nothing here.. wrong scope?
-*/
+// );
+// .then(console.log('clubIndex:', clubIndex)); // nothing here.. wrong scope?
 
 // get all races, in a format one could feed to a search index
 console.log('parsing races URL:', racesUrl);
@@ -65,8 +63,10 @@ Promise.resolve(requestPromise(racesUrl, races)
   .catch(function(err){
      throw(err);
 })).then(() => { 
-      // TODO: add more logic here.
-      console.log('race index now:',races);
+  // TODO: add more logic here.
+  // console.log('race index now:',races);
+  // TODO: make sure there is no race conditions for the clubs:
+  // console.log('after, clubIndex:', clubIndex);
 });
 
   /* 
@@ -83,5 +83,4 @@ Promise.resolve(requestPromise(racesUrl, races)
    *      link: '/no/event/528a0353-f170-4869-9a45-263b93c03205' },
    *    ...
    */
-  /*
 
