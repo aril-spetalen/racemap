@@ -195,18 +195,34 @@ console.log(clubList);
 
 */
 
-// getClubsByUrl(urls[0])
-// allClubs();
+// locationService ripoff, could this work?
+const clubService = {
+  clubs : async (urls) => {
+    let index = {};
+    urls.forEach( (url) => {
+      requestPromise(url)
+        .then(function(html){
+          let clubs = getClubs(html);
+          clubs.forEach(club => {
+            // clubIndex[club.id] = club;
+            index[club.id] = club;
+          })
+          return;
+        })
+        .catch(function(err){
+          console.log(err);
+          throw(err);
+        });
+    return index;
+    }); // }, clubIndex)
+  //resolve(index);
+  }
+}
+
 
 module.exports = {
   getData,
   numClubs,
-  getClubs
+  getClubs,
+  clubService
 }
-/*
-export let getData = (entity, i) => {
-let numClubs = (html) => {
-let getClubs = (html) => {
-let getClubsByUrl = new Promise((resolve, reject, url) => {
-let allClubs = () => {
-*/

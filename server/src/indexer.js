@@ -1,6 +1,6 @@
 const rf = require('./race');
 //const cf = require('./club');
-import { getData, numClubs, getClubs } from '../src/club';
+import { getData, numClubs, getClubs, clubService } from '../src/club';
 const df = require('./details');
 const fs = require('fs');
 const path = require('path');
@@ -25,6 +25,17 @@ let races = {}
 let clubIndex = {}
 
 // get clubList
+
+/*
+ * let clubs = {};
+(async () => {
+  clubs = clubService.clubs(urls);
+})();
+*/
+
+// let async clubs = clubService.clubs(urls);
+// console.log('clubs from service:', clubs);
+
 urls.forEach( (url) => {
     requestPromise(url)
       .then(function(html){
@@ -33,6 +44,7 @@ urls.forEach( (url) => {
           clubIndex[club.id] = club;
         })
         // console.log(clubIndex); // correct here!
+        
         return;
         // TODO add some details to each club here?
         })
