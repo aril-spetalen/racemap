@@ -1,3 +1,4 @@
+const fetch = require('node-fetch');
 const requestPromise = require('request-promise');
 const parser = require('cheerio'); 
 let year = 2020;
@@ -219,10 +220,25 @@ const clubService = {
   }
 }
 
+// https://stackoverflow.com/questions/50006595/using-promise-all-to-fetch-a-list-of-urls-with-await-statements
+async function fetchAllClubs(urls) {
+  return Promise.all(
+    urls.map(url=>fetch(url)
+      //.then(r => r.json())
+      .then(html => html.text())
+      //.then(body => console.log("html(url):", body))
+      .then(body => getClubs(body))
+      .then(clubs)
+      // .then(data => ({ data, url }))
+      .catch(error => ({ error, url }))
+    )
+  )
+}
 
 module.exports = {
   getData,
   numClubs,
   getClubs,
-  clubService
+  clubService,
+  fetchAllClubs
 }

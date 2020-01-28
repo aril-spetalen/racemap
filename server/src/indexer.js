@@ -1,6 +1,6 @@
 const rf = require('./race');
 //const cf = require('./club');
-import { getData, numClubs, getClubs, clubService } from '../src/club';
+import { getData, numClubs, getClubs, clubService, fetchAllClubs } from '../src/club';
 const df = require('./details');
 const fs = require('fs');
 const path = require('path');
@@ -81,6 +81,8 @@ Promise.resolve(requestPromise(racesUrl, races)
   // console.log('after, clubIndex:', clubIndex);
 });
 
+Promise.resolve(fetchAllClubs(urls))
+  .then( (all) => console.log(all));
   /* 
    * { '528a0353-f170-4869-9a45-263b93c03205':
    *    Regatta {
