@@ -119,163 +119,38 @@ let getClubs = (html) => {
   return c;  
 }
 
-/*
-let getClubsByUrl = new Promise((resolve, reject, url) => {
-  let htmls = [];
-  let c = []
-
-  requestPromise(url)
-      .then(function(html){
-            htmls.push(html);
-            let clubs = getClubs(html);
-            c = clubs;
-
-            console.log("number of clubs listed at given url:", clubs.length);
-            return c ;
-      })
-      .catch(function(err){
-            // console.log(err);
-            throw(err);
-  }).then( () => {
-     resolve(c);  
-     // TODO understand:
-     // console.log("c is not returned..:", c);
-  });
-  // console.log("final c:", c);
-});
-*/
-
-/*
-let all = []
-let allClubs = () => {
-  let c1 = getClubsByUrl(urls[0]);
-  let c2 = getClubsByUrl(urls[1]);
-  let c3 = getClubsByUrl(urls[2]);
-  Promise.all([c1, c2, c3]).then( (values) => {
-    //console.log("returning num clubs a:", all.length);
-    console.log("c1 num clubs:", c1.length);
-    return c1 + c2 + c3;
-  }).then((c) => {
-    all = c1 + c2 + c3;
-    return c 
-  }).catch((e) => {
-    console.log("error:", e);
-    return e;
-  });
-  // console.log("returning num clubs b:", c1.length);
-  console.log("all:", all);
-  return all 
-}
-*/
-
-// ???urls.forEach(url) (() => {
-// }
-
-/* this works:
-let clubList = []
-
-urls.forEach(url => {
-  requestPromise(url)
-    .then(function(html){
-      let c = getClubs(html);
-      clubList = clubList + getClubs(html);
-      // console.log(c['b346dfdc-4d8b-47a3-a101-787d395c8711']);
-      // console.log(c['b346dfdc-4d8b-47a3-a101-787d395c8711'].id);
-      console.log("number of clubs listed at given url:", c.length);
-      // console.log(clubList);
-      return c;
-
-      // TODO add some details to each club here?
-    })
-    .catch(function(err){
-      // console.log(err);
-      throw(err);
-  });
-})
-console.log(clubList);
-
-*/
-
-// locationService ripoff, could this work?
-const clubService = {
-  clubs : async (urls) => {
-    let index = {};
-    urls.forEach( (url) => {
-      requestPromise(url)
-        .then(function(html){
-          let clubs = getClubs(html);
-          clubs.forEach(club => {
-            // clubIndex[club.id] = club;
-            index[club.id] = club;
-          })
-          return;
-        })
-        .catch(function(err){
-          console.log(err);
-          throw(err);
-        });
-    return index;
-    }); // }, clubIndex)
-  //resolve(index);
-  }
-}
-
 // https://stackoverflow.com/questions/50006595/using-promise-all-to-fetch-a-list-of-urls-with-await-statements
 async function fetchAllClubs(urls) {
-  return Promise.all(
-    urls.map(url=>fetch(url)
-      //.then(r => r.json())
-      .then(html => html.text())
-      //.then(body => console.log("html(url):", body))
-      .then(body => getClubs(body))
-      .then(clubs)
-      // .then(data => ({ data, url }))
+  let matrix = Promise.all(
+    urls.map(url=>fetchClubs(url)
+      .then(clubs=> clubs.flat())
       .catch(error => ({ error, url }))
-    )
+      )
   )
+  return matrix.then( (matrix) =>
+  {
+    const m = matrix.flat();
+    let index = {}
+    m.forEach(club => {
+      index[club['id']] = club;
+    })
+    return index;
+  });
 }
 
-// async function
 // https://gist.github.com/msmfsd/fca50ab095b795eb39739e8c4357a808
 async function fetchClubs (url) {
-  // await response of fetch call
   let html = await fetch(url);
-  // only proceed once promise is resolved
   let body = await html.text();
   let clubs = getClubs(body);
-  // only proceed once second promise is resolved
   return clubs;
 }
 
-// trigger async function
-// log response or catch error of fetch promise
-/*fetchAsync()
-    .then(data => console.log(data))
-    .catch(reason => console.log(reason.message))
-*/
-/*
-async function fetchClubs(url) {
-  return Promise.resolve( (url) => {
-    fetch(url) 
-  })
-      //.then(r => r.json())
-      .then(html => html.text())
-      //.then(body => console.log("html(url):", body))
-      .then(body => getClubs(body))
-      .then(clubs)
-      // .then(data => ({ data, url }))
-      .catch(error => ({ error, url }))
-    )
-  )
-}
-
-*/
 
 module.exports = {
   getData,
   numClubs,
   getClubs,
-  clubService,
   fetchAllClubs,
   fetchClubs
 }

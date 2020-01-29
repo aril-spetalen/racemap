@@ -81,8 +81,13 @@ Promise.resolve(requestPromise(racesUrl, races)
   // console.log('after, clubIndex:', clubIndex);
 });
 
+/*
 fetchClubs(urls[0])
     .then(data => console.log(data))
+    .catch(reason => console.log(reason.message))
+*/
+fetchAllClubs(urls)
+    .then(data => console.log("received allClubs:", data))
     .catch(reason => console.log(reason.message))
 
 // Promise.resolve(fetchClubs(urls[0]))
