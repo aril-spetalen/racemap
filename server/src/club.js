@@ -1,27 +1,25 @@
 const fetch = require('node-fetch');
 const requestPromise = require('request-promise');
 const parser = require('cheerio'); 
+const details = require('./details');
+
 let year = 2020;
 let month = null;
 let countryCode = 'NOR';
 const baseURL = 'https://manage2sail.com';
-/*
- * let urls = [`https://manage2sail.com/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=1`,
-            `https://manage2sail.com/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=2`,
-            `https://manage2sail.com/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=3`];
-*/
 
 const urls = [`${baseURL}/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=1`,
-            `${baseURL}/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=2`,
-            `${baseURL}/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=3`];
+              `${baseURL}/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=2`,
+              `${baseURL}/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=3`];
+
 class Club {
   constructor(name, id, webSiteM2S) {
     this.name = name;
     this.id = id;
     this.webSiteM2S = webSiteM2S;
 
-    // the following should not be paramters to the contstructor, but
-    // found after a following the webSiteM2S and parse this.
+    // the following should not be parameters to the constructor, but
+    // found by following the webSiteM2S and parse this.
     /*
      * this.address = address;
 
