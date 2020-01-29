@@ -236,6 +236,7 @@ async function fetchAllClubs(urls) {
 }
 
 // async function
+// https://gist.github.com/msmfsd/fca50ab095b795eb39739e8c4357a808
 async function fetchClubs (url) {
   // await response of fetch call
   let html = await fetch(url);
