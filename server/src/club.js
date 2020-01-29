@@ -235,10 +235,46 @@ async function fetchAllClubs(urls) {
   )
 }
 
+// async function
+async function fetchClubs (url) {
+  // await response of fetch call
+  let html = await fetch(url);
+  // only proceed once promise is resolved
+  let body = await html.text();
+  let clubs = getClubs(body);
+  // only proceed once second promise is resolved
+  return clubs;
+}
+
+// trigger async function
+// log response or catch error of fetch promise
+/*fetchAsync()
+    .then(data => console.log(data))
+    .catch(reason => console.log(reason.message))
+*/
+/*
+async function fetchClubs(url) {
+  return Promise.resolve( (url) => {
+    fetch(url) 
+  })
+      //.then(r => r.json())
+      .then(html => html.text())
+      //.then(body => console.log("html(url):", body))
+      .then(body => getClubs(body))
+      .then(clubs)
+      // .then(data => ({ data, url }))
+      .catch(error => ({ error, url }))
+    )
+  )
+}
+
+*/
+
 module.exports = {
   getData,
   numClubs,
   getClubs,
   clubService,
-  fetchAllClubs
+  fetchAllClubs,
+  fetchClubs
 }
