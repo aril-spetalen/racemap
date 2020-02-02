@@ -26,7 +26,7 @@ let clubIndex = {}
 
 fetchAllClubs(urls)
   .then(data => {
-    console.log("received allClubs:", data);
+    console.log("Receiving allClubs:", data);
     clubIndex = data;
   })
   .catch(reason => console.log(reason.message));
@@ -36,9 +36,8 @@ fetchAllClubs(urls)
 console.log('parsing races URL:', racesUrl);
 Promise.resolve(requestPromise(racesUrl, races)
   .then(function(html){
-    // success!
     let r = rf.getRegattas(html);
-    console.log("number of regattas listed for 2020:", r.length);
+    // console.log("number of regattas:", r.length);
     r.forEach((race) => {
       races[race.regId] = race;
       races[race.regId].setClubLink(clubLink(race.clubId));
@@ -50,10 +49,8 @@ Promise.resolve(requestPromise(racesUrl, races)
   .catch(function(err){
      throw(err);
 })).then(() => { 
-  // TODO: add more logic here.
-  console.log('race index now:',races);
-  // not Ok.. Must handle in the .then clause above.
-  console.log('club index now:', clubIndex);
+  // Success here!
+  // console.log('race index now:',races);
 });
 
   /* 

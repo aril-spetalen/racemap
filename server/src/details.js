@@ -18,12 +18,25 @@ class ClubDetails {
     this.email = email,
     this.phone = phone
   }
+  setCoordinates(coordinates) {
+    this.coordinates = coordinates;
+  }
 }
 
 let details;
 
-function coordinates() {
-  return { "aalesund": '62\°28\'09.7\"N 6\°12\'18.2\"E'}
+function addCoordinates(club) {
+  //return { "aalesund": '62\°28\'09.7\"N 6\°12\'18.2\"E'}
+  let location = club.address ? club.address : club.city;
+  let loc = location.split(' ')[0];
+  // console.log(`finding coordinates for '${loc}'`);
+  //let coord = yr.getCoordinates(location);
+  // return "k"
+  yr.coordinates(loc)
+    .then((c) => {
+      // console.log('coord found:', c);
+      club.setCoordinates(c);
+    });
 }
 
 export let getData = (entity, i) => {
@@ -105,6 +118,7 @@ export let getDetails = (html) => {
     det["webSite"],
     det["email"],
     det["phone"]);
+  addCoordinates(details);
 
   return details;  
 }

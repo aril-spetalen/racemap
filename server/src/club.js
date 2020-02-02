@@ -121,15 +121,15 @@ let getClubs = (html) => {
 async function fetchAllClubs(urls) {
   let matrix = Promise.all(
     urls.map(url=>fetchClubs(url)
-      .then(clubs=> clubs.flat())
+      .then(clubs)
       .catch(error => ({ error, url }))
-      )
+    )
   )
   return matrix.then( (matrix) =>
   {
-    const m = matrix.flat();
+    const clubList = matrix.flat();
     let index = {}
-    m.forEach(club => {
+    clubList.forEach(club => {
       index[club['id']] = club;
     })
     return index;
