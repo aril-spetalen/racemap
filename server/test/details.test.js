@@ -8,21 +8,22 @@ const asfFile = fs.readFileSync(path.resolve(__dirname, './aalesundSeilForening.
 const knsFile = fs.readFileSync(path.resolve(__dirname, './kns.html'), 'utf8');
 const parser = require('cheerio');
 
+import { coordinates } from '../src/yr';
 
 
 let asfDetails = cd.getDetails(asfFile);
 let knsDetails = cd.getDetails(knsFile);
 let clubs = [asfDetails, knsDetails]
 
-/*
- * Promise.all(clubs).then( (clubs) => {
-  clubs.forEach( (club) => {
-    console.log("Array return from promiseList object ", club);
-  })
-}); */
-
 
 test('coordinates of aalesund sf is { lat: 62.46937, lon: 6.20505 }', () => {
+  let coord = {};
+  Promise.resolve((coord) => {
+    coordinates('Nørvevika')
+    .then((result) => {
+      expect(result).toBe({ lat: 62.46937, lon: 6.20505 });
+    })
+  });
   // expect(asfDetails.coordinates).toBe({ lat: 62.46937, lon: 6.20505 });
 });
 

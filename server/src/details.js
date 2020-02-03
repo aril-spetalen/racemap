@@ -1,6 +1,6 @@
 const requestPromise = require('request-promise');
 const parser = require('cheerio'); 
-import yr from './yr';
+import { coordinates } from './yr';
 let year = 2020;
 let month = null;
 let countryCode = 'NOR';
@@ -32,7 +32,7 @@ function addCoordinates(club) {
   // console.log(`finding coordinates for '${loc}'`);
   //let coord = yr.getCoordinates(location);
   // return "k"
-  yr.coordinates(loc)
+  coordinates(loc)
     .then((c) => {
       // console.log('coord found:', c);
       club.setCoordinates(c);
