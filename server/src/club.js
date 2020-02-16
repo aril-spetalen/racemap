@@ -117,6 +117,14 @@ let getClubs = (html) => {
   return c;  
 }
 
+// https://gist.github.com/msmfsd/fca50ab095b795eb39739e8c4357a808
+async function fetchClubs (url) {
+  let html = await fetch(url);
+  let body = await html.text();
+  let clubs = getClubs(body);
+  return clubs;
+}
+
 // https://stackoverflow.com/questions/50006595/using-promise-all-to-fetch-a-list-of-urls-with-await-statements
 async function fetchAllClubs(urls) {
   let matrix = Promise.all(
@@ -130,18 +138,15 @@ async function fetchAllClubs(urls) {
     const clubList = matrix.flat();
     let index = {}
     clubList.forEach(club => {
+      // get details here?
+      const d = details.getDetailsByUrl(`${baseURL}${club.webSiteM2S}`);
+      Promise.resolve(d).then( det => {
+        console.log(det)
+      });
       index[club['id']] = club;
     })
     return index;
   });
-}
-
-// https://gist.github.com/msmfsd/fca50ab095b795eb39739e8c4357a808
-async function fetchClubs (url) {
-  let html = await fetch(url);
-  let body = await html.text();
-  let clubs = getClubs(body);
-  return clubs;
 }
 
 

@@ -76,7 +76,7 @@ let selectorByEntity = (entity) => {
     return `#details > table > tbody > tr > td[value="Address"]:next-sibling > td:nth-child(2)`;
 }
 
-export let getDetails = (html) => {
+let getDetails = (html) => {
   let dp = parser.load(html); //
 
   //let address = dp(`#details > table > tbody > tr > td:contains("Address")`).parent() //.next().text().trim();
@@ -123,8 +123,9 @@ export let getDetails = (html) => {
   return details;  
 }
 
+const getDetailsByUrl = async (url) => {
 
-requestPromise(url)
+  const r = requestPromise(url)
   .then(function(html){
     // success!
     let cd = getDetails(html);
@@ -136,8 +137,9 @@ requestPromise(url)
     // handle error
     // console.log(err);
     throw(err);
-});
-
+})
+return r;
+}
 /*
  *
  * let numArr = [1,2,3,4,5];
@@ -180,3 +182,7 @@ export const findLocation = {
 };
 */
 
+module.exports = {
+  getDetails,
+  getDetailsByUrl
+}
