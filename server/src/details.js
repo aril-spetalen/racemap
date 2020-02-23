@@ -124,7 +124,6 @@ let getDetails = (html) => {
 }
 
 const getDetailsByUrl = async (url) => {
-
   const r = requestPromise(url)
   .then(function(html){
     // success!
@@ -140,6 +139,51 @@ const getDetailsByUrl = async (url) => {
 })
 return r;
 }
+
+// plan: take index with clubs, return index with clubs added its details and coordinates
+// by using: const d = details.getDetailsByUrl(`${baseURL}${club.webSiteM2S}`);
+// and possibly yr coordinates.
+const getAddedDetailsForClublist = async (clublist) => {
+  // format: { 'c5e066ba-cffd-4db7-b4fc-3c5cda091ba6':
+  //    Club {
+  //         name: 'Ålesunds Seilforening',
+  //         id: 'c5e066ba-cffd-4db7-b4fc-3c5cda091ba6',
+  //         webSiteM2S: '/en-US/Club/Detail/c5e066ba-cffd-4db7-b4fc-3c5cda091ba6' },
+  //         'fd91ed0d-6e95-48ac-a8cb-b7e1ec22345a':
+  //    Club {
+  //         name: 'Arendals Seilforening',
+  //         id: 'fd91ed0d-6e95-48ac-a8cb-b7e1ec22345a',
+  //         webSiteM2S: '/en-US/Club/Detail/fd91ed0d-6e95-48ac-a8cb-b7e1ec22345a' },
+  // ... }
+  // now use: const d = details.getDetailsByUrl(`${baseURL}${club.webSiteM2S}`);
+  
+  let URLs = [];
+  // for each club in clublist, add its URL to URLs
+  // then create a list of promises, for getting details by these URLs (as in lines below)
+  // then return a new index with clubs with these details added.
+
+  return await getDetailsByUrl(url);
+  /*
+  const r = requestPromise(url)
+  .then(function(html){
+    // success!
+    let cd = getDetails(html);
+    //console.log(cd);
+    //console.log("number of clubs listed for 2020:", c.length);
+    return cd;
+  })
+  .catch(function(err){
+    // handle error
+    // console.log(err);
+    throw(err);
+})
+return r;
+
+*/
+};
+
+/* plan: take index with clubs, return index with clubs added its details and coordinates
+
 /*
  *
  * let numArr = [1,2,3,4,5];

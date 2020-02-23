@@ -141,7 +141,8 @@ async function fetchAllClubs(urls) {
       // get details here?
       const d = details.getDetailsByUrl(`${baseURL}${club.webSiteM2S}`);
       Promise.resolve(d).then( det => {
-        console.log(det)
+        // Here, the details are as expected. But won't be returned like this with fetchAllClubs...
+        // console.log(det)
       });
       index[club['id']] = club;
     })
