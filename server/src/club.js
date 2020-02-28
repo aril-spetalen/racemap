@@ -98,8 +98,8 @@ let numClubs = (html) => {
   return clubs('body > div.container > div.page-content > div.page-block > table > tbody > tr').length
 }
 
-let getClubs = (html) => {
-  let c = []
+let getClubs = async (html) => {
+  let c = [];
   clubs = parser.load(html); //
   for (var i = 1; i <= numClubs(html); i++) {
     let club = new Club(
@@ -107,7 +107,12 @@ let getClubs = (html) => {
         getId('name', i),
         getClubLink(i));
         
-    // c[club.id] = club;
+    const d = await details.getDetailsByUrl(`${baseURL}${club.webSiteM2S}`);
+    // Object.values(d).forEach(function(item, key) {
+    //   club[key] = item;
+    // });
+    club["details"] = d;
+    c[club.id] = club;
     c.push(club);
   }
   // TODO: this does not set postCode persistently:
@@ -121,7 +126,7 @@ let getClubs = (html) => {
 async function fetchClubs (url) {
   let html = await fetch(url);
   let body = await html.text();
-  let clubs = getClubs(body);
+  let clubs = await getClubs(body);
   return clubs;
 }
 
@@ -138,12 +143,10 @@ async function fetchAllClubs(urls) {
     const clubList = matrix.flat();
     let index = {}
     clubList.forEach(club => {
+      // index[club['id']] = club;
       // get details here?
-      const d = details.getDetailsByUrl(`${baseURL}${club.webSiteM2S}`);
-      Promise.resolve(d).then( det => {
-        // Here, the details are as expected. But won't be returned like this with fetchAllClubs...
-        // console.log(det)
-      });
+      // const d = await details.getDetailsByUrl(`${baseURL}${club.webSiteM2S}`);
+      // club["details"] = det;
       index[club['id']] = club;
     })
     return index;

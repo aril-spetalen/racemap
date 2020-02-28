@@ -1,3 +1,4 @@
+const regeneratorRuntime = require("regenerator-runtime");
 const requestPromise = require('request-promise');
 const parser = require('cheerio'); 
 import { coordinates } from './yr';
@@ -140,11 +141,11 @@ const getDetailsByUrl = async (url) => {
 return r;
 }
 
-// plan: take index with clubs, return index with clubs added its details and coordinates
+// take index with clubs, return index with clubs added its details and coordinates
 // by using: const d = details.getDetailsByUrl(`${baseURL}${club.webSiteM2S}`);
 // and possibly yr coordinates.
 const getAddedDetailsForClublist = async (clublist) => {
-  // format: { 'c5e066ba-cffd-4db7-b4fc-3c5cda091ba6':
+  // clublist: { 'c5e066ba-cffd-4db7-b4fc-3c5cda091ba6':
   //    Club {
   //         name: 'Ålesunds Seilforening',
   //         id: 'c5e066ba-cffd-4db7-b4fc-3c5cda091ba6',
@@ -162,24 +163,11 @@ const getAddedDetailsForClublist = async (clublist) => {
   // then create a list of promises, for getting details by these URLs (as in lines below)
   // then return a new index with clubs with these details added.
 
-  return await getDetailsByUrl(url);
-  /*
-  const r = requestPromise(url)
-  .then(function(html){
-    // success!
-    let cd = getDetails(html);
-    //console.log(cd);
-    //console.log("number of clubs listed for 2020:", c.length);
-    return cd;
-  })
-  .catch(function(err){
-    // handle error
-    // console.log(err);
-    throw(err);
-})
-return r;
+  const ws = Object.values(clublist).map(club => club.webSiteM2S);
+  console.log(ws);
 
-*/
+  return await getDetailsByUrl(url);
+
 };
 
 /* plan: take index with clubs, return index with clubs added its details and coordinates
