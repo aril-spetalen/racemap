@@ -111,7 +111,12 @@ let getClubs = async (html) => {
     // Object.values(d).forEach(function(item, key) {
     //   club[key] = item;
     // });
-    club["details"] = d;
+    // club["details"] = d;
+    // club["details"] = d.getAll();
+    d.getAll().forEach( pair => {
+      //console.log('pair:', pair);
+      club[pair[0]] = pair[1];
+    })
     c[club.id] = club;
     c.push(club);
   }

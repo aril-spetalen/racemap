@@ -22,6 +22,9 @@ class ClubDetails {
   setCoordinates(coordinates) {
     this.coordinates = coordinates;
   }
+  getAll() {
+    return Object.entries(this);
+  }
 }
 
 let details;
@@ -35,8 +38,11 @@ function addCoordinates(club) {
   // return "k"
   coordinates(loc)
     .then((c) => {
-      // console.log('coord found:', c);
+      console.log('coord found:', c);
       club.setCoordinates(c);
+    })
+    .catch( (error) => {
+      console.log('error setting coordinates:', error);
     });
 }
 
@@ -127,7 +133,6 @@ let getDetails = (html) => {
 const getDetailsByUrl = async (url) => {
   const r = requestPromise(url)
   .then(function(html){
-    // success!
     let cd = getDetails(html);
     //console.log(cd);
     //console.log("number of clubs listed for 2020:", c.length);
