@@ -29,21 +29,18 @@ class ClubDetails {
 
 let details;
 
-function addCoordinates(club) {
-  //return { "aalesund": '62\°28\'09.7\"N 6\°12\'18.2\"E'}
-  let location = club.address ? club.address : club.city;
+const getCoordinates = async (details) => {
+  let retVal = {};
+  let location = details.address ? details.address : details.city;
   let loc = location.split(' ')[0];
-  // console.log(`finding coordinates for '${loc}'`);
-  //let coord = yr.getCoordinates(location);
-  // return "k"
-  coordinates(loc)
+  await coordinates(loc)
     .then((c) => {
-      console.log('coord found:', c);
-      club.setCoordinates(c);
+      retVal = c;
     })
     .catch( (error) => {
-      console.log('error setting coordinates:', error);
+      console.log('error getting coordinates:', error);
     });
+  return retVal;
 }
 
 export let getData = (entity, i) => {
@@ -86,22 +83,6 @@ let selectorByEntity = (entity) => {
 let getDetails = (html) => {
   let dp = parser.load(html); //
 
-  //let address = dp(`#details > table > tbody > tr > td:contains("Address")`).parent() //.next().text().trim();
-  //let address = dp(`#details > table > tbody > tr > td:contains("Address")`).children["1"];
-  // console.log(addressLine);
-  
-  /*
-  let address = "adr";
-  const addressPromise = new Promise(function(addressLine, resolve, reject) {
-      let lineParser = parser.load(addressLine);// = dp(:w
-      resolve(lineParser('td:nth-child(2)').text().trim()); 
-  });
-
-  addressPromise.then(function(value) {
-      console.log("promise return value:", value);
-      address = value;
-      });
-      */
   let address = '';
   let city = '';
   let postCode = '';
@@ -125,7 +106,7 @@ let getDetails = (html) => {
     det["webSite"],
     det["email"],
     det["phone"]);
-  addCoordinates(details);
+  // getCoordinates(details);
 
   return details;  
 }
@@ -175,10 +156,7 @@ const getAddedDetailsForClublist = async (clublist) => {
 
 };
 
-/* plan: take index with clubs, return index with clubs added its details and coordinates
-
 /*
- *
  * let numArr = [1,2,3,4,5];
 let nums=[];
 
@@ -201,25 +179,10 @@ Promise.all([promiseList]).then((arrList)=>{
 
 */ 
 
-/*
-await yr.coordinates(document.locations);
-let async coord = () => await yr.coordinates(['Oslo', "aalesund"]);
-console.log(coord);
-*/
 
-/*
-export const findLocation = {
-  forClub: async (address) => {
-    //console.log('now finding coords for club');
-    const coordinates = await yr.coordinates(address);
-    //console.log('coordinates:', coordinates);
-
-    return coordinates;
-  }
-};
-*/
 
 module.exports = {
   getDetails,
-  getDetailsByUrl
+  getDetailsByUrl,
+  getCoordinates
 }
