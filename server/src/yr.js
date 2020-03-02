@@ -16,7 +16,6 @@ const coordinates = async (location) => {
     return result;
   }
 
-// export default yr;
 module.exports = {
   coordinates
 }

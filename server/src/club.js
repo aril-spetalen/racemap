@@ -17,15 +17,8 @@ class Club {
     this.name = name;
     this.id = id;
     this.webSiteM2S = webSiteM2S;
-
-    // the following should not be parameters to the constructor, but
-    // found by following the webSiteM2S and parse this.
-    /*
-     * this.address = address;
-
-    this.coordinates = getCoordinates(this.address); 
-    */
   }
+
   setPostCode(code) {
     this.postCode = code;
   }
@@ -42,22 +35,6 @@ class Club {
     this.phone = phone;
   }
 }
-
-/*
-export let setClubDetails = (url, club) => {
-  requestPromise(url)
-  .then(function(html){
-    let details = parser.load(html); //
-    let   address = details('table > tbody > tr:nth-child(1) > td:nth-child(2)').text().trim()
-    club.setPostCode(address)
-    return club;
-  })
-  .catch(function(err){
-    console.log(err);
-    throw(err);
-});
-}
-*/
 
 let clubs;
 
@@ -98,8 +75,8 @@ let numClubs = (html) => {
   return clubs('body > div.container > div.page-content > div.page-block > table > tbody > tr').length
 }
 
-let getClubs = (html) => {
-  let c = []
+let getClubs = async (html) => {
+  let c = [];
   clubs = parser.load(html); //
   for (var i = 1; i <= numClubs(html); i++) {
     let club = new Club(
@@ -107,14 +84,43 @@ let getClubs = (html) => {
         getId('name', i),
         getClubLink(i));
         
-    // c[club.id] = club;
+    const d = await details.getDetailsByUrl(`${baseURL}${club.webSiteM2S}`);
+    d.getAll().forEach( pair => {
+      club[pair[0]] = pair[1];
+    })
+    // const coord = await details.getCoordinates(d)
+    // console.log("coords retrieved:", coord);
+    // club['coordinates'] = coord;
+    // club['coordinates'] = await details.getCoordinates(d);
+
+    c[club.id] = club;
     c.push(club);
   }
-  // TODO: this does not set postCode persistently:
-  //c.forEach(club => setClubDetails(baseURL + club.webSiteM2S, club))
-  // c.forEach(club => club.setClubDetails());
-  // console.log(c);
   return c;  
+}
+
+let getClubsWithCoordinates = async (clubs) => {
+  let c2 = []
+  for(const club of clubs) {
+    await details.getCoordinates(club)
+      .then( c => {
+        club["coordinates"] = c;
+        c2.push(club);
+      })
+      .catch(error => {
+        console.log('error getting coordinates per club:', error);
+      });
+  }
+  return c2;
+}
+ 
+// https://gist.github.com/msmfsd/fca50ab095b795eb39739e8c4357a808
+async function fetchClubs (url) {
+  let html = await fetch(url);
+  let body = await html.text();
+  let clubs = await getClubs(body);
+  let clubs2 = await getClubsWithCoordinates(clubs);
+  return clubs2;
 }
 
 // https://stackoverflow.com/questions/50006595/using-promise-all-to-fetch-a-list-of-urls-with-await-statements
@@ -134,14 +140,6 @@ async function fetchAllClubs(urls) {
     })
     return index;
   });
-}
-
-// https://gist.github.com/msmfsd/fca50ab095b795eb39739e8c4357a808
-async function fetchClubs (url) {
-  let html = await fetch(url);
-  let body = await html.text();
-  let clubs = getClubs(body);
-  return clubs;
 }
 
 

@@ -26,14 +26,15 @@ let clubIndex = {}
 
 fetchAllClubs(urls)
   .then(data => {
-    console.log("Receiving allClubs:", data);
-    clubIndex = data;
+    console.log("Receiving all clubs:", data);
+    // clubIndex = data;
+    
   })
   .catch(reason => console.log(reason.message));
 
 
 // get all races, in a format one could feed to a search index
-console.log('parsing races URL:', racesUrl);
+// console.log('parsing races URL:', racesUrl);
 Promise.resolve(requestPromise(racesUrl, races)
   .then(function(html){
     let r = rf.getRegattas(html);
@@ -42,8 +43,8 @@ Promise.resolve(requestPromise(racesUrl, races)
       races[race.regId] = race;
       races[race.regId].setClubLink(clubLink(race.clubId));
     });
-    // console.log('num races:', Object.keys(races).length);
-    // console.log('first:', races[Object.keys(races)[0]]);
+    console.log('num races:', Object.keys(races).length);
+    console.log('first:', races[Object.keys(races)[0]]);
     return 0;
   })
   .catch(function(err){
@@ -52,19 +53,3 @@ Promise.resolve(requestPromise(racesUrl, races)
   // Success here!
   // console.log('race index now:',races);
 });
-
-  /* 
-   * { '528a0353-f170-4869-9a45-263b93c03205':
-   *    Regatta {
-   *      year: 2020,
-   *      fromDate: '04.04.',
-   *      toDate: '11.04.',
-   *      name: 'Laser Clinic Malcesine Easter 2020',
-   *      country: '',
-   *      place: '',
-   *      clubName: 'NORGES SEILFORBUND',
-   *      regId: '528a0353-f170-4869-9a45-263b93c03205',
-   *      link: '/no/event/528a0353-f170-4869-9a45-263b93c03205' },
-   *    ...
-   */
-
