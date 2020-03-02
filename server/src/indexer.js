@@ -6,6 +6,11 @@ const fs = require('fs');
 const path = require('path');
 const parser = require('cheerio');
 const requestPromise = require('request-promise');
+const { Client } = require('@elastic/elasticsearch')
+const elastic = new Client({ node: 'http://localhost:9200' })
+const http = require('http');
+const net = require('net');
+
 
 let year = 2020;
 let month = null;
@@ -23,6 +28,18 @@ let clubLink = ((clubId) => {
 
 let races = {}
 let clubIndex = {}
+
+// function to index data
+// TODO: set up elastic with host and port, ref. 
+// https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/16.x/api-reference.html
+let putRace = async (race) => {
+  const response = await elastic.index({
+    index: 'races',
+    type: 'race',
+    id: race.regId,
+    body: race
+  });
+}
 
 fetchAllClubs(urls)
   .then(data => {
@@ -45,6 +62,7 @@ Promise.resolve(requestPromise(racesUrl, races)
     });
     console.log('num races:', Object.keys(races).length);
     console.log('first:', races[Object.keys(races)[0]]);
+    putRace(races[Object.keys(races)[0]]);
     return 0;
   })
   .catch(function(err){
