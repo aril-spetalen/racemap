@@ -1,3 +1,4 @@
+const fetch = require('node-fetch')
 const requestPromise = require('request-promise');
 const parser = require('cheerio'); 
 let year = 2020;
@@ -66,7 +67,7 @@ let selector = (entity, number) => {
   return `div.loadable > div > table > tbody > tr:nth-child(${number}) > td:nth-child(${column(entity)})`;
 }
 
-export let getData = (entity, i) => {
+let getData = (entity, i) => {
   return regattas(selector(entity, i)).text().trim();
 }
 
@@ -89,12 +90,12 @@ let getId = (entity, i) => {
   return href.split('/')[3];
 }
 
-export let numRegattas = (html) => {
+let numRegattas = (html) => {
   regattas = parser.load(html); //
   return regattas('div.loadable > div > table > tbody > tr').length
 }
 
-export let getRegattas = (html) => {
+let getRegattas = (html) => {
   let r= [];
   regattas = parser.load(html); //
   for (var i = 1; i <= numRegattas(html); i++) {
@@ -115,6 +116,14 @@ export let getRegattas = (html) => {
   return r;  
 }
 
+async function fetchRegattas(url) {
+  let html = await fetch(url);
+  let body = await html.text();
+  let regattas = await getRegattas(body);
+  return regattas;
+}
+
+
 requestPromise(url)
   .then(function(html){
     // success!
@@ -128,3 +137,9 @@ requestPromise(url)
     // console.log(err);
     throw(err);
 });
+
+module.exports = {
+  fetchRegattas,
+  getRegattas,
+  numRegattas
+}
