@@ -58,9 +58,14 @@ let f = fetchRegattas(racesUrl)
     });
     console.log('num races:', Object.keys(races).length);
     console.log('first:', races[Object.keys(races)[0]]);
-    await putRace(races[Object.keys(races)[0]]);
+    for(const key of Object.keys(races)) {
+      console.log('key:', key);
+      await putRace(races[key]);
+    }
 
     return races;
+  })
+  .then((r) => {
   })
   .catch(reason => console.log(reason.message));
 
