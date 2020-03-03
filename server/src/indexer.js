@@ -1,11 +1,9 @@
-const rf = require('./race');
-//const cf = require('./club');
 import { getData, numClubs, getClubs, clubService, fetchAllClubs, fetchClubs } from '../src/club';
+import { numRegattas, fetchRegattas, getRegattas } from '../src/race';
 const df = require('./details');
 const fs = require('fs');
 const path = require('path');
 const parser = require('cheerio');
-const requestPromise = require('request-promise');
 const { Client } = require('@elastic/elasticsearch')
 const elastic = new Client({ node: 'http://localhost:9200' })
 const http = require('http');
@@ -33,6 +31,7 @@ let clubIndex = {}
 // TODO: set up elastic with host and port, ref. 
 // https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/16.x/api-reference.html
 let putRace = async (race) => {
+  console.log('now putting race to index:', race.regId);
   const response = await elastic.index({
     index: 'races',
     type: 'race',
@@ -43,7 +42,7 @@ let putRace = async (race) => {
 
 fetchAllClubs(urls)
   .then(data => {
-    console.log("Receiving all clubs:", data);
+    // console.log("Receiving all clubs:", data);
     // clubIndex = data;
     
   })
@@ -51,23 +50,23 @@ fetchAllClubs(urls)
 
 
 // get all races, in a format one could feed to a search index
-// console.log('parsing races URL:', racesUrl);
-Promise.resolve(requestPromise(racesUrl, races)
-  .then(function(html){
-    let r = rf.getRegattas(html);
-    // console.log("number of regattas:", r.length);
+let f = fetchRegattas(racesUrl)
+  .then(async (r) => {
     r.forEach((race) => {
       races[race.regId] = race;
       races[race.regId].setClubLink(clubLink(race.clubId));
     });
     console.log('num races:', Object.keys(races).length);
     console.log('first:', races[Object.keys(races)[0]]);
-    putRace(races[Object.keys(races)[0]]);
-    return 0;
+    await putRace(races[Object.keys(races)[0]]);
+
+    return races;
   })
-  .catch(function(err){
-     throw(err);
-})).then(() => { 
-  // Success here!
-  // console.log('race index now:',races);
-});
+  .catch(reason => console.log(reason.message));
+
+  /* works, but can I use it?
+Promise.resolve(f)
+  .then((races) => {
+    console.log('final races:', races);
+  });
+  */
