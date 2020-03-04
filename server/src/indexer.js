@@ -32,19 +32,39 @@ let clubIndex = {}
 // https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/16.x/api-reference.html
 let putRace = async (race) => {
   console.log('now putting race to index:', race.regId);
+  race['doctype'] = 'race';
   const response = await elastic.index({
     index: 'races',
-    type: 'race',
     id: race.regId,
     body: race
+  })
+  .catch( (error) => {
+    console.log('error trying to add club to index:', error);
   });
 }
 
+let putClubs = async (clubs) => {
+  const indices = Object.keys(clubs);
+  for(const idx of indices) {
+    console.log('putting club on index, key:', idx);
+    console.log('club:', clubs[idx]);
+    clubs[idx]['doctype'] = 'club';
+
+    const response = await elastic.index({
+      index: 'races',
+      id: idx,
+      body: clubs[idx]
+    })
+    .catch( (error) => {
+      console.log('error trying to add club to index:', error);
+    });
+  }
+}
+
 fetchAllClubs(urls)
-  .then(data => {
+  .then( async (data) => {
     // console.log("Receiving all clubs:", data);
-    // clubIndex = data;
-    
+    putClubs(data);
   })
   .catch(reason => console.log(reason.message));
 
