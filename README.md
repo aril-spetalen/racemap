@@ -22,6 +22,7 @@ npm run all
 
 ## Frontend
 A node express server with a map from kartverket presented with leaflet.
+Ref. https://www.kartverket.no/data/lage-kart-pa-nett/
 ```
 cd front
 npm start
