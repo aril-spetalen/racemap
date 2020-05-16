@@ -1,0 +1,586 @@
+
+> racedata@1.0.0 all /home/n23430/dev/racemap/server
+> babel-node src/indexer.js
+
+num races: 58
+first: Regatta {
+  year: 2020,
+  fromDate: '21.03.',
+  toDate: '22.03.',
+  name:
+   'Treningssamling-FROSTBITE 2020\n                                                        Cancelled',
+  country: 'NOR',
+  place: 'Son',
+  clubName: 'Soon Seilforening',
+  regId: '259c06b8-b905-4be9-9f70-44b5f648ef2a',
+  clubId: '9c0b5526-a8d6-40c7-81a7-cf2cb51f98c2',
+  link: '/no/event/259c06b8-b905-4be9-9f70-44b5f648ef2a',
+  clubLink: '/en-US/Club/Detail/9c0b5526-a8d6-40c7-81a7-cf2cb51f98c2' }
+key: 259c06b8-b905-4be9-9f70-44b5f648ef2a
+now putting race to index: 259c06b8-b905-4be9-9f70-44b5f648ef2a
+key: 550ad368-2ca3-4a9c-8d6b-f43a0fe8797e
+now putting race to index: 550ad368-2ca3-4a9c-8d6b-f43a0fe8797e
+key: 92202b42-be09-4fdf-954a-af7fe3e11284
+now putting race to index: 92202b42-be09-4fdf-954a-af7fe3e11284
+key: cecb3299-b61b-488d-8cf0-a91c55f2a989
+now putting race to index: cecb3299-b61b-488d-8cf0-a91c55f2a989
+key: NC1optimist
+now putting race to index: NC1optimist
+key: c8e9f570-0fb1-4769-abac-e2985730f642
+now putting race to index: c8e9f570-0fb1-4769-abac-e2985730f642
+key: ca682599-6c85-4517-b3ac-304b3062b8f1
+now putting race to index: ca682599-6c85-4517-b3ac-304b3062b8f1
+key: 566cb015-31ff-4773-9012-195c342f8b1d
+now putting race to index: 566cb015-31ff-4773-9012-195c342f8b1d
+key: 1af847e2-5ffc-445c-9a2c-9216ba246b29
+now putting race to index: 1af847e2-5ffc-445c-9a2c-9216ba246b29
+key: 0ceec073-36a3-4f4f-bf5e-87f1e2b93c39
+now putting race to index: 0ceec073-36a3-4f4f-bf5e-87f1e2b93c39
+key: vr1joller
+now putting race to index: vr1joller
+key: 8d5e26e0-5855-4f90-beb6-5c7cdd0040bf
+now putting race to index: 8d5e26e0-5855-4f90-beb6-5c7cdd0040bf
+key: 48bf87d8-d1a0-4252-8b97-98c88bcef22b
+now putting race to index: 48bf87d8-d1a0-4252-8b97-98c88bcef22b
+key: 9a05315f-c96d-455a-a86d-5b289530b3b5
+now putting race to index: 9a05315f-c96d-455a-a86d-5b289530b3b5
+key: BSFonsdag2020
+now putting race to index: BSFonsdag2020
+key: e8e9f0ec-1c09-4cb8-97ce-58e99804053e
+now putting race to index: e8e9f0ec-1c09-4cb8-97ce-58e99804053e
+key: d27c563d-64a5-49a3-9413-f99eafc06afa
+now putting race to index: d27c563d-64a5-49a3-9413-f99eafc06afa
+key: 7d58e1ba-8e11-4028-a055-1c324468dfd2
+now putting race to index: 7d58e1ba-8e11-4028-a055-1c324468dfd2
+key: d8aeac5a-d830-48c5-8fbd-0a2d87f95e20
+now putting race to index: d8aeac5a-d830-48c5-8fbd-0a2d87f95e20
+key: 824c033d-e9fa-4453-8e4a-0313c69e5ddf
+now putting race to index: 824c033d-e9fa-4453-8e4a-0313c69e5ddf
+key: 132368a5-c918-4d3e-a5f7-cf27871d784e
+now putting race to index: 132368a5-c918-4d3e-a5f7-cf27871d784e
+key: 7b3fd99f-2be3-4d49-b9eb-218244f64ac2
+now putting race to index: 7b3fd99f-2be3-4d49-b9eb-218244f64ac2
+key: a7502a09-8d66-4502-bcd6-4cd898f5395a
+now putting race to index: a7502a09-8d66-4502-bcd6-4cd898f5395a
+key: 03ea6888-25d5-4c95-ad20-ce918947a5f6
+now putting race to index: 03ea6888-25d5-4c95-ad20-ce918947a5f6
+key: a52ba353-37fa-41cf-af08-d03acfcb2590
+now putting race to index: a52ba353-37fa-41cf-af08-d03acfcb2590
+key: 009b100d-0d13-44e3-9d3b-360fac16b13a
+now putting race to index: 009b100d-0d13-44e3-9d3b-360fac16b13a
+key: f61bc3ba-376c-44d4-a240-68bf35f74dd9
+now putting race to index: f61bc3ba-376c-44d4-a240-68bf35f74dd9
+key: KvalikSSL1div20
+now putting race to index: KvalikSSL1div20
+key: f12a7a89-ec16-4dae-9014-4244bb47f169
+now putting race to index: f12a7a89-ec16-4dae-9014-4244bb47f169
+key: MSSeilskoleUke26
+now putting race to index: MSSeilskoleUke26
+key: 7b243004-98bb-49fb-a58e-ded0cf5b0b1f
+now putting race to index: 7b243004-98bb-49fb-a58e-ded0cf5b0b1f
+key: MSSeilskoleUke27
+now putting race to index: MSSeilskoleUke27
+key: 12354b0f-f6a6-4b62-a966-4abdecafe651
+now putting race to index: 12354b0f-f6a6-4b62-a966-4abdecafe651
+key: SnipeNM2020
+now putting race to index: SnipeNM2020
+key: 6beff080-d22b-48c0-9e94-ee757f059a93
+now putting race to index: 6beff080-d22b-48c0-9e94-ee757f059a93
+key: e442ed1e-0704-4c7e-b3ae-92ba0e96627b
+now putting race to index: e442ed1e-0704-4c7e-b3ae-92ba0e96627b
+key: MSSeilskoleUke31
+now putting race to index: MSSeilskoleUke31
+key: d42c37c0-62fe-453d-b31f-ecd0c756125a
+now putting race to index: d42c37c0-62fe-453d-b31f-ecd0c756125a
+key: MSSeilskoleUke32
+now putting race to index: MSSeilskoleUke32
+key: 8a319e8d-989f-42d4-822e-272537f6284f
+now putting race to index: 8a319e8d-989f-42d4-822e-272537f6284f
+key: 08e9daa2-ed8a-423f-8a00-6476d3197adf
+now putting race to index: 08e9daa2-ed8a-423f-8a00-6476d3197adf
+key: MSSeilskoleUke33
+now putting race to index: MSSeilskoleUke33
+key: 2470c371-e6b0-4da1-96b5-dfec17b96f79
+now putting race to index: 2470c371-e6b0-4da1-96b5-dfec17b96f79
+key: 314794f7-b5c8-48cd-9c2c-46ac81460b45
+now putting race to index: 314794f7-b5c8-48cd-9c2c-46ac81460b45
+key: 463184fc-e918-4379-b25f-bc5f34e56267
+now putting race to index: 463184fc-e918-4379-b25f-bc5f34e56267
+key: fc3d254a-7c00-4527-94e2-66c01d1e8ff0
+now putting race to index: fc3d254a-7c00-4527-94e2-66c01d1e8ff0
+key: IFNM2020
+now putting race to index: IFNM2020
+key: 9814858a-5b06-4830-8f9f-9526e47ed2d4
+now putting race to index: 9814858a-5b06-4830-8f9f-9526e47ed2d4
+key: 28d76ebd-075b-4827-ac02-fc030a14f32a
+now putting race to index: 28d76ebd-075b-4827-ac02-fc030a14f32a
+key: 6b08c9cf-fb99-4f06-8fd5-c8e485acc937
+now putting race to index: 6b08c9cf-fb99-4f06-8fd5-c8e485acc937
+key: YnglingTRD2020
+now putting race to index: YnglingTRD2020
+key: 9b5940f5-3e7d-4849-8aca-1d7cc2f5f4d3
+now putting race to index: 9b5940f5-3e7d-4849-8aca-1d7cc2f5f4d3
+key: 732c6da3-1e49-48e7-8e73-3f536484e179
+now putting race to index: 732c6da3-1e49-48e7-8e73-3f536484e179
+key: NM2020Melges24
+now putting race to index: NM2020Melges24
+key: Hostcup2020
+now putting race to index: Hostcup2020
+key: 680820fc-ff24-41f6-9719-a1d4326fb068
+now putting race to index: 680820fc-ff24-41f6-9719-a1d4326fb068
+key: 698d7c35-a62e-4d0f-9a25-c53b86657347
+now putting race to index: 698d7c35-a62e-4d0f-9a25-c53b86657347
+key: b93b8ee6-78fe-4e8d-912a-17c3970c0c6d
+now putting race to index: b93b8ee6-78fe-4e8d-912a-17c3970c0c6d
+putting club on index, key: c5e066ba-cffd-4db7-b4fc-3c5cda091ba6
+club: Club {
+  name: 'Ålesunds Seilforening',
+  id: 'c5e066ba-cffd-4db7-b4fc-3c5cda091ba6',
+  webSiteM2S: '/en-US/Club/Detail/c5e066ba-cffd-4db7-b4fc-3c5cda091ba6',
+  address: 'Nørvevika -',
+  city: 'Ålesund',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'andreas@olarsen.no',
+  phone: undefined,
+  coordinates:
+   { location: 'Nørvevika',
+     coordinate: { lat: 62.46937, lon: 6.20505 } } }
+putting club on index, key: fd91ed0d-6e95-48ac-a8cb-b7e1ec22345a
+club: Club {
+  name: 'Arendals Seilforening',
+  id: 'fd91ed0d-6e95-48ac-a8cb-b7e1ec22345a',
+  webSiteM2S: '/en-US/Club/Detail/fd91ed0d-6e95-48ac-a8cb-b7e1ec22345a',
+  address: 'Postboks 51',
+  city: 'Arendal',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'leder@asf.no',
+  phone: '+47 934 68 150',
+  coordinates: {} }
+putting club on index, key: b346dfdc-4d8b-47a3-a101-787d395c8711
+club: Club {
+  name: 'Åsgårdstrand Seilforening',
+  id: 'b346dfdc-4d8b-47a3-a101-787d395c8711',
+  webSiteM2S: '/en-US/Club/Detail/b346dfdc-4d8b-47a3-a101-787d395c8711',
+  address: 'Havnegaten 18',
+  city: 'Åsgårdstrand',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'regattakontor@seilforeningen.no',
+  phone: undefined,
+  coordinates:
+   { location: 'Havnegaten',
+     coordinate: { lat: 59.48728, lon: 10.3195 } } }
+putting club on index, key: 5e6206da-04d1-4cf9-8e9c-4df46aec56f9
+club: Club {
+  name: 'Asker Seilforening',
+  id: '5e6206da-04d1-4cf9-8e9c-4df46aec56f9',
+  webSiteM2S: '/en-US/Club/Detail/5e6206da-04d1-4cf9-8e9c-4df46aec56f9',
+  address: 'Blakstad Bryggevei 9',
+  city: 'Vettre',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'post@askerseil.no',
+  phone: undefined,
+  coordinates:
+   { location: 'Blakstad',
+     coordinate: { lat: 59.81913, lon: 10.46451 } } }
+putting club on index, key: 2196159e-c813-4ea0-b69c-0efc38d561d3
+club: Club {
+  name: 'Askøy Seilforening',
+  id: '2196159e-c813-4ea0-b69c-0efc38d561d3',
+  webSiteM2S: '/en-US/Club/Detail/2196159e-c813-4ea0-b69c-0efc38d561d3',
+  address: 'Friluftsvegen 63',
+  city: 'Hauglandshella',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'rog-es@online.no',
+  phone: '+4791848527',
+  coordinates:
+   { location: 'Friluftsvegen',
+     coordinate: { lat: 60.45342, lon: 5.10957 } } }
+putting club on index, key: c578ff29-bf8d-49da-9ebc-3a8d526b9b23
+club: Club {
+  name: 'Bærum Seilforening',
+  id: 'c578ff29-bf8d-49da-9ebc-3a8d526b9b23',
+  webSiteM2S: '/en-US/Club/Detail/c578ff29-bf8d-49da-9ebc-3a8d526b9b23',
+  address: '21',
+  city: 'Høvik',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'regatta@bseil.no',
+  phone: undefined,
+  coordinates:
+   { location: '21', coordinate: { lat: 60.19439, lon: 24.97005 } } }
+putting club on index, key: 264d3a62-3864-4f56-8dbb-4f36f190f8aa
+club: Club {
+  name: 'Båtlaget Njord/Tysnes',
+  id: '264d3a62-3864-4f56-8dbb-4f36f190f8aa',
+  webSiteM2S: '/en-US/Club/Detail/264d3a62-3864-4f56-8dbb-4f36f190f8aa',
+  address: 'Peralivegen',
+  city: 'Tysnes',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'meltor_nor@outlook.com',
+  phone: undefined,
+  coordinates: {} }
+putting club on index, key: b0852bb3-ea4b-41f4-9e2b-1cb3b61ef63d
+club: Club {
+  name: 'Bergens Seilforening',
+  id: 'b0852bb3-ea4b-41f4-9e2b-1cb3b61ef63d',
+  webSiteM2S: '/en-US/Club/Detail/b0852bb3-ea4b-41f4-9e2b-1cb3b61ef63d',
+  address: 'Hjellestadvegen 247',
+  city: 'Hjellestad',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'kontor@bergens-seilforening.no',
+  phone: undefined,
+  coordinates: {} }
+putting club on index, key: 4aa1fb5b-70ab-45f9-a009-f759713885e7
+club: Club {
+  name: 'Brevik Seilforening',
+  id: '4aa1fb5b-70ab-45f9-a009-f759713885e7',
+  webSiteM2S: '/en-US/Club/Detail/4aa1fb5b-70ab-45f9-a009-f759713885e7',
+  address: 'Seivallveien 62',
+  city: 'Porsgrunn.',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'oleingebretsen@gmail.com',
+  phone: undefined,
+  coordinates: {} }
+putting club on index, key: f9663ef0-098a-4d20-8558-26bbbb8a725a
+club: Club {
+  name: 'Bundefjorden Seilforening',
+  id: 'f9663ef0-098a-4d20-8558-26bbbb8a725a',
+  webSiteM2S: '/en-US/Club/Detail/f9663ef0-098a-4d20-8558-26bbbb8a725a',
+  address: 'Sundveien 32',
+  city: 'Oslo',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'bundefjorden@gmail.com',
+  phone: undefined,
+  coordinates:
+   { location: 'Sundveien',
+     coordinate: { lat: 61.13564, lon: 11.37787 } } }
+putting club on index, key: 1716b42b-dd2f-479c-9c13-114961a93dfc
+club: Club {
+  name: 'Christianssands Seilforening',
+  id: '1716b42b-dd2f-479c-9c13-114961a93dfc',
+  webSiteM2S: '/en-US/Club/Detail/1716b42b-dd2f-479c-9c13-114961a93dfc',
+  address: 'Strandpromenaden 14',
+  city: 'Kristiansand',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'chsf@online.no',
+  phone: undefined,
+  coordinates:
+   { location: 'Strandpromenaden',
+     coordinate: { lat: 59.20522, lon: 10.9426 } } }
+putting club on index, key: dea02e8a-a792-41f2-b0d0-1e1c68936f55
+club: Club {
+  name: 'Drøbaksund Seilforening',
+  id: 'dea02e8a-a792-41f2-b0d0-1e1c68936f55',
+  webSiteM2S: '/en-US/Club/Detail/dea02e8a-a792-41f2-b0d0-1e1c68936f55',
+  address: 'Husvikholmen 4',
+  city: 'Drøbak',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'post@dssf.no',
+  phone: undefined,
+  coordinates:
+   { location: 'Husvikholmen',
+     coordinate: { lat: 59.67538, lon: 10.62273 } } }
+putting club on index, key: 6357fa21-76ca-47a2-b265-dbdacb88447f
+club: Club {
+  name: 'Fredrikstad Seilforening',
+  id: '6357fa21-76ca-47a2-b265-dbdacb88447f',
+  webSiteM2S: '/en-US/Club/Detail/6357fa21-76ca-47a2-b265-dbdacb88447f',
+  address: 'Vikaneveien 359',
+  city: 'Gressvik',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'post@fredrikstad-seilforening.no',
+  phone: undefined,
+  coordinates: {} }
+putting club on index, key: ccfb30e5-53ba-477a-af5d-2d20618547cd
+club: Club {
+  name: 'Grimstad Seilforening',
+  id: 'ccfb30e5-53ba-477a-af5d-2d20618547cd',
+  webSiteM2S: '/en-US/Club/Detail/ccfb30e5-53ba-477a-af5d-2d20618547cd',
+  address: '',
+  city: 'Grimstad',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'bent.vale@ericsson.com',
+  phone: undefined,
+  coordinates:
+   { location: 'Grimstad',
+     coordinate: { lat: 58.34046, lon: 8.59337 } } }
+putting club on index, key: 74d83f13-c66d-44b5-83ba-1d1f33179a8e
+club: Club {
+  name: 'Horten Seilforening',
+  id: '74d83f13-c66d-44b5-83ba-1d1f33179a8e',
+  webSiteM2S: '/en-US/Club/Detail/74d83f13-c66d-44b5-83ba-1d1f33179a8e',
+  address: 'Rørestrand',
+  city: 'Horten',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'post@hortenseilforening.no',
+  phone: undefined,
+  coordinates:
+   { location: 'Rørestrand',
+     coordinate: { lat: 59.39842, lon: 10.47995 } } }
+putting club on index, key: 09cc5a7c-fee0-4b01-b238-7cbdcdd5f3a7
+club: Club {
+  name: 'Hurum Seilforening',
+  id: '09cc5a7c-fee0-4b01-b238-7cbdcdd5f3a7',
+  webSiteM2S: '/en-US/Club/Detail/09cc5a7c-fee0-4b01-b238-7cbdcdd5f3a7',
+  address: 'Postboks 94',
+  city: 'Sætre',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'per-lund@live.no',
+  phone: undefined,
+  coordinates: {} }
+putting club on index, key: 1a0afe58-4bce-49b0-8b1d-a88d655e3f57
+club: Club {
+  name: 'Kongelig Norsk Seilforening',
+  id: '1a0afe58-4bce-49b0-8b1d-a88d655e3f57',
+  webSiteM2S: '/en-US/Club/Detail/1a0afe58-4bce-49b0-8b1d-a88d655e3f57',
+  address: 'Huk aveny 1',
+  city: 'Oslo',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'karl@kns.no',
+  phone: '0047 23 27 56 00',
+  coordinates:
+   { location: 'Huk', coordinate: { lat: 59.70499, lon: 8.68512 } } }
+putting club on index, key: 6961fa10-337a-4366-a578-23f4bb978a6b
+club: Club {
+  name: 'Larvik Seilforening',
+  id: '6961fa10-337a-4366-a578-23f4bb978a6b',
+  webSiteM2S: '/en-US/Club/Detail/6961fa10-337a-4366-a578-23f4bb978a6b',
+  address: 'Ødegårdsveien 20',
+  city: 'Larvik',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'regatta@larvikseilforening.no',
+  phone: undefined,
+  coordinates:
+   { location: 'Ødegårdsveien',
+     coordinate: { lat: 59.59023, lon: 10.6599 } } }
+putting club on index, key: dc13c1f9-e998-43b4-95b3-9d8b9b2487fe
+club: Club {
+  name: 'Milde Båtlag',
+  id: 'dc13c1f9-e998-43b4-95b3-9d8b9b2487fe',
+  webSiteM2S: '/en-US/Club/Detail/dc13c1f9-e998-43b4-95b3-9d8b9b2487fe',
+  address: 'Skipanesvegen 12',
+  city: 'Hjellestad',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'regatta@mildebatlag.org',
+  phone: '55991530 / 48006962',
+  coordinates: {} }
+putting club on index, key: 19d40921-3d3c-4d38-8433-bd5bc326c6bf
+club: Club {
+  name: 'Molde Seilforening',
+  id: '19d40921-3d3c-4d38-8433-bd5bc326c6bf',
+  webSiteM2S: '/en-US/Club/Detail/19d40921-3d3c-4d38-8433-bd5bc326c6bf',
+  address: 'Fannestrandvegen 120',
+  city: 'MOLDE',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'cecilie@emc1.no',
+  phone: '92260436',
+  coordinates: {} }
+putting club on index, key: fc031d09-9300-42d1-9cbc-ee6ad315e4d4
+club: Club {
+  name: 'Moss Seilforening',
+  id: 'fc031d09-9300-42d1-9cbc-ee6ad315e4d4',
+  webSiteM2S: '/en-US/Club/Detail/fc031d09-9300-42d1-9cbc-ee6ad315e4d4',
+  address: 'Strandpromenaden 22',
+  city: 'MOSS',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'havnesjef@moss-seilforening.no',
+  phone: undefined,
+  coordinates:
+   { location: 'Strandpromenaden',
+     coordinate: { lat: 59.20522, lon: 10.9426 } } }
+putting club on index, key: 7fbc5f5a-16b1-4567-a285-e00a2cc51f68
+club: Club {
+  name: 'Nesodden Seilforening',
+  id: '7fbc5f5a-16b1-4567-a285-e00a2cc51f68',
+  webSiteM2S: '/en-US/Club/Detail/7fbc5f5a-16b1-4567-a285-e00a2cc51f68',
+  address: 'Postboks 30',
+  city: 'Nesoddtangen',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'regatta@nesodden-seilforening.no',
+  phone: undefined,
+  coordinates: {} }
+putting club on index, key: 9518c484-5533-4618-b2ce-344b59e775c5
+club: Club {
+  name: 'NORGES SEILFORBUND',
+  id: '9518c484-5533-4618-b2ce-344b59e775c5',
+  webSiteM2S: '/en-US/Club/Detail/9518c484-5533-4618-b2ce-344b59e775c5',
+  address: 'Sognsveien 73',
+  city: 'Oslo',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'per.boymo@seiling.no',
+  phone: '21029700',
+  coordinates:
+   { location: 'Sognsveien',
+     coordinate: { lat: 59.39795, lon: 9.96118 } } }
+putting club on index, key: f39e0142-b889-4f88-a941-851dcfdd5a68
+club: Club {
+  name: 'Oslo Seilforening',
+  id: 'f39e0142-b889-4f88-a941-851dcfdd5a68',
+  webSiteM2S: '/en-US/Club/Detail/f39e0142-b889-4f88-a941-851dcfdd5a68',
+  address: 'Pb 686 Skøyen',
+  city: '0214',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'idrett@osloseilforening.no',
+  phone: '90561980',
+  coordinates:
+   { location: 'Pb', coordinate: { lat: 8.13083, lon: -11.7281 } } }
+putting club on index, key: 86601c9f-7738-451c-9ded-06fb3dda5468
+club: Club {
+  name: 'RAN Seilforening',
+  id: '86601c9f-7738-451c-9ded-06fb3dda5468',
+  webSiteM2S: '/en-US/Club/Detail/86601c9f-7738-451c-9ded-06fb3dda5468',
+  address: 'Angleviksvegen 115',
+  city: 'Straume',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'post@ranseil.no',
+  phone: '',
+  coordinates: {} }
+putting club on index, key: d565db11-2e77-4f00-92cf-aec903c4b231
+club: Club {
+  name: 'Risør Seilforening',
+  id: 'd565db11-2e77-4f00-92cf-aec903c4b231',
+  webSiteM2S: '/en-US/Club/Detail/d565db11-2e77-4f00-92cf-aec903c4b231',
+  address: 'SVALEVEIEN 22 SVALEVEIEN 22',
+  city: 'RISØR',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'leder@risorseilforening.no',
+  phone: undefined,
+  coordinates:
+   { location: 'SVALEVEIEN',
+     coordinate: { lat: 60.03809, lon: 11.11776 } } }
+putting club on index, key: cca2d5ca-500a-4ffe-9990-5e60dd6785bc
+club: Club {
+  name: 'Sandefjord Seilforening',
+  id: 'cca2d5ca-500a-4ffe-9990-5e60dd6785bc',
+  webSiteM2S: '/en-US/Club/Detail/cca2d5ca-500a-4ffe-9990-5e60dd6785bc',
+  address: 'Granholmveien 76',
+  city: 'Sandefjord',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'sekreter@sandefjordseilforening.no',
+  phone: undefined,
+  coordinates:
+   { location: 'Granholmveien',
+     coordinate: { lat: 65.40304, lon: 12.55396 } } }
+putting club on index, key: 80d3871d-6b45-4c6d-845d-886c4c2d994e
+club: Club {
+  name: 'Sarpsborg Seilforening',
+  id: '80d3871d-6b45-4c6d-845d-886c4c2d994e',
+  webSiteM2S: '/en-US/Club/Detail/80d3871d-6b45-4c6d-845d-886c4c2d994e',
+  address: 'Seilerbakken 11',
+  city: 'Sarpsborg',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'post@sarpsborg-seilforening.no',
+  phone: undefined,
+  coordinates: {} }
+putting club on index, key: 9c0b5526-a8d6-40c7-81a7-cf2cb51f98c2
+club: Club {
+  name: 'Soon Seilforening',
+  id: '9c0b5526-a8d6-40c7-81a7-cf2cb51f98c2',
+  webSiteM2S: '/en-US/Club/Detail/9c0b5526-a8d6-40c7-81a7-cf2cb51f98c2',
+  address: '',
+  city: '',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'kontoret@soonsf.no',
+  phone: undefined,
+  coordinates:
+   { location: '', coordinate: { lat: 59.91273, lon: 10.74609 } } }
+putting club on index, key: 05a3c5d9-46c5-48cc-b062-7ae8192f242f
+club: Club {
+  name: 'Stavanger Seilforening',
+  id: '05a3c5d9-46c5-48cc-b062-7ae8192f242f',
+  webSiteM2S: '/en-US/Club/Detail/05a3c5d9-46c5-48cc-b062-7ae8192f242f',
+  address: 'Karen A. Sømmesvei 3-5',
+  city: 'Stavanger',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'dagligleder@stavangerseilforening.no',
+  phone: '51900100',
+  coordinates:
+   { location: 'Karen',
+     coordinate: { lat: 68.07205, lon: 15.69071 } } }
+putting club on index, key: 9ee5466d-6a6f-4850-92a2-e51a20d45742
+club: Club {
+  name: 'Tønsberg Seilforening',
+  id: '9ee5466d-6a6f-4850-92a2-e51a20d45742',
+  webSiteM2S: '/en-US/Club/Detail/9ee5466d-6a6f-4850-92a2-e51a20d45742',
+  address: 'Fjærholmveien 192',
+  city: 'Husøysund',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'driftsleder@tonsbergseilforening.no',
+  phone: undefined,
+  coordinates: {} }
+putting club on index, key: 727539cf-8ea2-4602-b1cd-0fd3d610193e
+club: Club {
+  name: 'Trondhjems Seilforening',
+  id: '727539cf-8ea2-4602-b1cd-0fd3d610193e',
+  webSiteM2S: '/en-US/Club/Detail/727539cf-8ea2-4602-b1cd-0fd3d610193e',
+  address: 'Nedre ila 10',
+  city: '7018',
+  postCode: undefined,
+  country: 'Norway',
+  webSite: undefined,
+  email: 'regatta@trondhjems-seilforening.no',
+  phone: undefined,
+  coordinates:
+   { location: 'Nedre',
+     coordinate: { lat: 59.02438, lon: 6.07049 } } }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+      <title>Seilaskart</title>
+
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin=""/>
+      <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+
+
+  </head>
+  <body>
+
+    <div id="map" style="height: 400px; width: 600px;"></div>
+    <script>
+      // var map = L.map('map').setView([60.14, 10.25], 11);
+      var map = L.map('map').setView([59.9328, 10.7558], 10);
+      L.tileLayer('https://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=topo4&zoom={z}&x={x}&y={y}', {
+        attribution: '<a href="http://www.kartverket.no/">Kartverket</a>'
+      }).addTo(map);
+      var marker = L.marker([59.95, 10.7558]).addTo(map);
+    </script>
+
+  </body>
+</html>
+
