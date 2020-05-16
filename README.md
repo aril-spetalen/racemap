@@ -2,7 +2,7 @@
 A small graphical application, which assembles a view into local sail races for the season. 
 
 Conseptually I want to index all local races and clubs registered at the manage2sail service.
-Based on a search for races (possibly filtered by class or time), they will be presented in a 
+Based on a search for races (possibly filtered by boat class or time), they will be presented in a 
 leaflet map portal.
 
 ## Search
@@ -21,4 +21,9 @@ npm run all
 ```
 
 ## Frontend
-Planned implemented with leaflet.
+A node express server with a map from kartverket presented with leaflet.
+```
+cd front
+npm start
+```
+
