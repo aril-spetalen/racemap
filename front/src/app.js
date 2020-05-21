@@ -2,6 +2,9 @@ var express = require('express');
 var app = express();
 var path = require('path')
 
+app.set('view engine', 'pug');
+app.set('views', __dirname + '/public/views');
+
 app.get('/', function (req, res) {
     // res.send('Seilaser i Norge');
     res.sendFile(path.join(__dirname + '/index.html'));
