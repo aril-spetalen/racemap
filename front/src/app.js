@@ -12,10 +12,10 @@ app.get('/',function(req,res){
   //__dirname : It will resolve to your project folder.
 });
 
-app.post('/query', (req, res) => {
-  // let responses = client.
-  // res.send(js/query.js q=req.body);
-  res.send(`query body sent: ${JSON.stringify(req.body)}.`);
+app.post('/query_handler', (req, res) => {
+  res.set('Content-Type', 'application/json')
+  res.status(200);
+  res.json(`querySent: ${JSON.stringify(req.body)}.`);
 });
 
 //add the router
