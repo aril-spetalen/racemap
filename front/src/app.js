@@ -12,7 +12,7 @@ app.get('/',function(req,res){
   //__dirname : It will resolve to your project folder.
 });
 
-app.post('/query.js', (req, res) => {
+app.post('/query', (req, res) => {
   // let responses = client.
   // res.send(js/query.js q=req.body);
   res.send(`query body sent: ${JSON.stringify(req.body)}.`);
