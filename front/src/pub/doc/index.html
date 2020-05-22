@@ -25,8 +25,35 @@
       var marker = L.marker([59.95, 10.7558]).addTo(map);
     </script>
 
-    <script src="query.js">
-    </script>
+    <!-- form onSubmit="return query()" -->
+    <form
+      method = "POST"
+      action="query.js">
+      <div>
+        <label for="raceSearch">Søk etter regattaer</label>
+        <input id="raceSearch" 
+               type="text"
+               name="query">
+      </div>
+      <div>
+        <input type="submit" 
+               value="Søk" 
+               accesskey="s">
+      </div>
+    </form>
+
+    <!--<label for="site-search">Søk etter regattaer:</label>
+    <input type="search" id="site-search" name="q"
+           aria-label="Search through site content">
+
+    <button>Søk</button> -->
+    <!--script id="q">
+function query() {
+  alert('skjemaet ble sendt.');
+  return false;
+}
+
+    </script -->
   </body>
 </html>
 
