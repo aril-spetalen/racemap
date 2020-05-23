@@ -3,9 +3,7 @@ var app = express();
 var path = require('path');
 var router = express.Router;
 const bodyParser = require('body-parser');
-// const client = require('js/query')
-app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(bodyParser.json({ extended: true }));
 
 app.get('/',function(req,res){
   res.sendFile(path.join(__dirname+'/pub/doc/index.html'));
@@ -13,9 +11,11 @@ app.get('/',function(req,res){
 });
 
 app.post('/query_handler', (req, res) => {
-  res.set('Content-Type', 'application/json')
-  res.status(200);
-  res.json(`querySent: ${JSON.stringify(req.body)}.`);
+  res.set('Content-Type', 'application/json');
+  console.log("got a query_handler request");
+  console.log("payload:", req.body);
+  // now ask ElasticSearch for a response on this query!
+  res.json(req.body);
 });
 
 //add the router

@@ -112,13 +112,13 @@ textarea {
         <label for="search">Søk etter regattaer</label>
         <input id="raceQuery" 
                type="search"
+               onsearch="performSearch()"
                name="querystring"
                value="færderseilasen">
       </div>
       <div>
         <input id="searchButton"
                type="button" 
-               onclick="queryInput()"
                value="Søk" 
                accesskey="s">
       </div>
@@ -131,30 +131,45 @@ textarea {
       var searchButton = document.querySelector('input#searchButton');
       var searchResult = document.querySelector('#response');
 
-      searchButton.onclick = function() {
-        var query = queryInput.value;
-        performSearch(query);
-      };
-
       function performSearch(query) {
         // build the querystring
-        query = JSON.stringify({"query": query});
+        esQuery = JSON.stringify({"query": query});
         const url = 'query_handler';
+        console.log('post to query_handler the following query:', esQuery);
 
         fetch(url, {
           method: 'POST',
-          body: query
+          headers:{'content-type': 'application/json'},
+          body: esQuery
         }).then(function(response) {
-          response.body().then(function(body) {
-            searchResult.textContent = body;
-          });
+          response.json().then((data) => {
+            searchResult.textContent = JSON.stringify(data);
         });
 
 
+      });
       };
 
-      performSearch('færderseilasen');
-      queryInput.value = 'færderseilasen';
+      window.addEventListener('keydown',function(e) {
+        if(e.keyIdentifier=='U+000A' || e.keyIdentifier=='Enter' || e.keyCode==13) {
+          if(e.target.nodeName=='INPUT' && e.target.type=='search') {
+            e.preventDefault();
+            return false;
+          }
+        }
+      }, true);
+      // queryInput.onsearch = ( () => {
+      //   var query = queryInput.value;
+      //   performSearch(query);
+      // });
+      searchButton.onclick = ( () => {
+        var query = queryInput.value;
+        performSearch(query);
+      })
+
+      // performSearch('cup');
+      // queryInput.value = 'cup';
+      // searchButton.click();
 
     </script>
 
