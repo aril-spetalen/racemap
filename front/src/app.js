@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var query = require('query');
 var router = express.Router;
 const bodyParser = require('body-parser');
 app.use(bodyParser.json({ extended: true }));
@@ -15,6 +16,7 @@ app.post('/query_handler', (req, res) => {
   console.log("got a query_handler request");
   console.log("payload:", req.body);
   // now ask ElasticSearch for a response on this query!
+  response = query.query(req.body.query);
   res.json(req.body);
 });
 
