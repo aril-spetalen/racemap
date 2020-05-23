@@ -1,9 +1,25 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-var query = require('query');
+var query = require('./query');
 var router = express.Router;
 const bodyParser = require('body-parser');
+
+
+let searchRaces = async (race) => {
+  console.log('now putting race to index:', race.regId);
+  race['doctype'] = 'race';
+  const response = await client.search({
+    index: 'races',
+    id: race.regId,
+    body: race
+  })
+  .catch( (error) => {
+    console.log('error trying to add club to index:', error);
+  });
+}
+
+
 app.use(bodyParser.json({ extended: true }));
 
 app.get('/',function(req,res){
@@ -13,11 +29,21 @@ app.get('/',function(req,res){
 
 app.post('/query_handler', (req, res) => {
   res.set('Content-Type', 'application/json');
-  console.log("got a query_handler request");
-  console.log("payload:", req.body);
+  console.log("got query_handler request with payload:", req.body);
   // now ask ElasticSearch for a response on this query!
-  response = query.query(req.body.query);
-  res.json(req.body);
+  return query.search(req.body.query).then(result => {
+    console.log("search result:", result);
+    res.json(result);
+  });
+  console.log('r:', r);
+  res.json(r);
+
+  /* query.search (req.body.query)
+  .then( (result) => {
+    console.log('result class:', typeof(result));
+    console.log("es query result:", result);
+    res.json(result);
+  }); */
 });
 
 //add the router
@@ -27,19 +53,3 @@ app.use('pub', router);
 app.listen(process.env.port || 3000);
 
 console.log('Running at Port 3000');
-
-
-
-/*
-app.set('view engine', 'pug');
-app.set('views', __dirname + '/public/views');
-
-app.get('/', function (req, res) {
-    // res.send('Seilaser i Norge');
-    res.sendFile(path.join(__dirname + '/index.html'));
-    res.sendFile(path.join(__dirname + '/query.js'));
-});
-app.listen(3000, function () {
-    console.log('Seilaskart app listening on port 3000.');
-});
-*/
