@@ -40,7 +40,7 @@ label {
     text-align: right;
 }
 
-#raceSearch, 
+#raceQuery, 
 textarea {
     /* To make sure that all text fields have the same font settings
        By default, textareas have a monospace font */
@@ -54,7 +54,7 @@ textarea {
     border: 1px solid #999;
 }
 
-#raceSearch:focus, 
+#raceQuery:focus, 
 textarea:focus {
     /* Additional highlight for focused elements */
     border-color: #000;
@@ -107,12 +107,10 @@ textarea {
     </script>
 
     <!-- form onSubmit="return query()" -->
-    <form
-      method = "POST"
-      action="query_handler">
+    <form>
       <div>
         <label for="search">Søk etter regattaer</label>
-        <input id="raceSearch" 
+        <input id="raceQuery" 
                type="search"
                name="querystring"
                value="færderseilasen">
@@ -120,41 +118,40 @@ textarea {
       <div>
         <input id="searchButton"
                type="submit" 
-               onclick="verseChoose()"
+               onclick="queryInput()"
                value="Søk" 
                accesskey="s">
       </div>
     </form>
 
        <script>
-      var verseChoose = document.querySelector('.raceSearch');
-            var poemDisplay = document.querySelector('pre');
+      var queryInput = document.querySelector('input#raceQuery');
+      var poemDisplay = document.querySelector('pre');
 
-                  verseChoose.onchange = function() {
-                            var verse = verseChoose.value;
-                                    updateDisplay(verse);
-                                          };
+      queryInput.onchange = function() {
+        var verse = queryInput.value;
+        updateDisplay(verse);
+      };
 
       function updateDisplay(verse) {
-                verse = verse.replace(" ", "");
-                        verse = verse.toLowerCase();
-                                var url = verse + '.txt';
+        verse = verse.replace(" ", "");
+        verse = verse.toLowerCase();
+        var url = verse + '.txt';
 
-          fetch(url).then(function(response) {
-                      response.text().then(function(text) {
-                                    poemDisplay.textContent = text;
-                                              });
-                              });
-
-
-                };
-
-      updateDisplay('Verse 1');
-            verseChoose.value = 'Verse 1';
+        fetch(url).then(function(response) {
+          response.text().then(function(text) {
+            poemDisplay.textContent = text;
+          });
+        });
 
 
+      };
+
+      updateDisplay('færderseilasen');
+      queryInput.value = 'færderseilasen';
 
     </script>
+
   </body>
 </html>
 
