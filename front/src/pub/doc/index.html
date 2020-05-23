@@ -16,7 +16,7 @@
 form {
     /* Center the form on the page */
     margin: 0 auto;
-    width: 400px;
+    width: 600px;
     /* Form outline */
     padding: 1em;
     border: 1px solid #CCC;
@@ -36,11 +36,11 @@ form li + li {
 label {
     /* Uniform size & alignment */
     display: inline-block;
-    width: 90px;
+    width: 120;
     text-align: right;
 }
 
-input, 
+#raceSearch, 
 textarea {
     /* To make sure that all text fields have the same font settings
        By default, textareas have a monospace font */
@@ -54,7 +54,7 @@ textarea {
     border: 1px solid #999;
 }
 
-input:focus, 
+#raceSearch:focus, 
 textarea:focus {
     /* Additional highlight for focused elements */
     border-color: #000;
@@ -68,15 +68,15 @@ textarea {
     height: 5em;
 }
 
-.button {
-    /* Align buttons with the text fields */
-    padding-left: 90px; /* same size as the label elements */
-}
 
-button {
+#searchButton {
+    /* Align buttons with the text fields */
+    padding-left: 10px; /* same size as the label elements */
     /* This extra margin represent roughly the same space as the space
        between the labels and their text fields */
-    margin-left: .5em;
+    margin-left: 9em;
+    margin-top: 0.2em;
+    width: 90;
 }
 
 #map {
@@ -118,24 +118,43 @@ button {
                value="færderseilasen">
       </div>
       <div>
-        <input type="submit" 
+        <input id="searchButton"
+               type="submit" 
+               onclick="verseChoose()"
                value="Søk" 
                accesskey="s">
       </div>
     </form>
 
-    <!--<label for="site-search">Søk etter regattaer:</label>
-    <input type="search" id="site-search" name="q"
-           aria-label="Search through site content">
+       <script>
+      var verseChoose = document.querySelector('.raceSearch');
+            var poemDisplay = document.querySelector('pre');
 
-    <button>Søk</button> -->
-    <!--script id="q">
-function query() {
-  alert('skjemaet ble sendt.');
-  return false;
-}
+                  verseChoose.onchange = function() {
+                            var verse = verseChoose.value;
+                                    updateDisplay(verse);
+                                          };
 
-    </script -->
+      function updateDisplay(verse) {
+                verse = verse.replace(" ", "");
+                        verse = verse.toLowerCase();
+                                var url = verse + '.txt';
+
+          fetch(url).then(function(response) {
+                      response.text().then(function(text) {
+                                    poemDisplay.textContent = text;
+                                              });
+                              });
+
+
+                };
+
+      updateDisplay('Verse 1');
+            verseChoose.value = 'Verse 1';
+
+
+
+    </script>
   </body>
 </html>
 
