@@ -117,37 +117,43 @@ textarea {
       </div>
       <div>
         <input id="searchButton"
-               type="submit" 
+               type="button" 
                onclick="queryInput()"
                value="Søk" 
                accesskey="s">
       </div>
     </form>
+    <div id='response'>
+      </div>
 
        <script>
       var queryInput = document.querySelector('input#raceQuery');
-      var poemDisplay = document.querySelector('pre');
+      var searchButton = document.querySelector('input#searchButton');
+      var searchResult = document.querySelector('#response');
 
-      queryInput.onchange = function() {
-        var verse = queryInput.value;
-        updateDisplay(verse);
+      searchButton.onclick = function() {
+        var query = queryInput.value;
+        performSearch(query);
       };
 
-      function updateDisplay(verse) {
-        verse = verse.replace(" ", "");
-        verse = verse.toLowerCase();
-        var url = verse + '.txt';
+      function performSearch(query) {
+        // build the querystring
+        query = JSON.stringify({"query": query});
+        const url = 'query_handler';
 
-        fetch(url).then(function(response) {
-          response.text().then(function(text) {
-            poemDisplay.textContent = text;
+        fetch(url, {
+          method: 'POST',
+          body: query
+        }).then(function(response) {
+          response.body().then(function(body) {
+            searchResult.textContent = body;
           });
         });
 
 
       };
 
-      updateDisplay('færderseilasen');
+      performSearch('færderseilasen');
       queryInput.value = 'færderseilasen';
 
     </script>
