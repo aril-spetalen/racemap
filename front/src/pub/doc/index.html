@@ -16,7 +16,7 @@
 form {
     /* Center the form on the page */
     margin: 0 auto;
-    width: 400px;
+    width: 600px;
     /* Form outline */
     padding: 1em;
     border: 1px solid #CCC;
@@ -36,11 +36,11 @@ form li + li {
 label {
     /* Uniform size & alignment */
     display: inline-block;
-    width: 90px;
+    width: 120;
     text-align: right;
 }
 
-input, 
+#raceQuery, 
 textarea {
     /* To make sure that all text fields have the same font settings
        By default, textareas have a monospace font */
@@ -54,7 +54,7 @@ textarea {
     border: 1px solid #999;
 }
 
-input:focus, 
+#raceQuery:focus, 
 textarea:focus {
     /* Additional highlight for focused elements */
     border-color: #000;
@@ -68,15 +68,15 @@ textarea {
     height: 5em;
 }
 
-.button {
-    /* Align buttons with the text fields */
-    padding-left: 90px; /* same size as the label elements */
-}
 
-button {
+#searchButton {
+    /* Align buttons with the text fields */
+    padding-left: 10px; /* same size as the label elements */
     /* This extra margin represent roughly the same space as the space
        between the labels and their text fields */
-    margin-left: .5em;
+    margin-left: 9em;
+    margin-top: 0.2em;
+    width: 90;
 }
 
 #map {
@@ -107,35 +107,57 @@ button {
     </script>
 
     <!-- form onSubmit="return query()" -->
-    <form
-      method = "POST"
-      action="query_handler">
+    <form>
       <div>
         <label for="search">Søk etter regattaer</label>
-        <input id="raceSearch" 
+        <input id="raceQuery" 
                type="search"
                name="querystring"
                value="færderseilasen">
       </div>
       <div>
-        <input type="submit" 
+        <input id="searchButton"
+               type="button" 
+               onclick="queryInput()"
                value="Søk" 
                accesskey="s">
       </div>
     </form>
+    <div id='response'>
+      </div>
 
-    <!--<label for="site-search">Søk etter regattaer:</label>
-    <input type="search" id="site-search" name="q"
-           aria-label="Search through site content">
+       <script>
+      var queryInput = document.querySelector('input#raceQuery');
+      var searchButton = document.querySelector('input#searchButton');
+      var searchResult = document.querySelector('#response');
 
-    <button>Søk</button> -->
-    <!--script id="q">
-function query() {
-  alert('skjemaet ble sendt.');
-  return false;
-}
+      searchButton.onclick = function() {
+        var query = queryInput.value;
+        performSearch(query);
+      };
 
-    </script -->
+      function performSearch(query) {
+        // build the querystring
+        query = JSON.stringify({"query": query});
+        const url = 'query_handler';
+
+        fetch(url, {
+          method: 'POST',
+          body: query
+        }).then(function(response) {
+          response.body().then(function(body) {
+            searchResult.textContent = body;
+          });
+        });
+
+
+      };
+
+      performSearch('færderseilasen');
+      queryInput.value = 'færderseilasen';
+
+    </script>
+
   </body>
 </html>
 
