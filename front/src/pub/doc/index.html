@@ -144,6 +144,13 @@ textarea {
         }).then(function(response) {
           response.json().then((data) => {
             searchResult.textContent = JSON.stringify(data);
+            console.log("typeof data:", typeof(data));
+            console.log("data.hits:", data.hits);
+            let races = data.hits.hits;
+            races.forEach(race => {
+              console.log(race._source.coordinates.coordinate);
+              L.marker([race._source.coordinates.coordinate.lat, race._source.coordinates.coordinate.lon]).addTo(map);
+            });
         });
 
 
