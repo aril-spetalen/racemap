@@ -29,17 +29,54 @@ class ClubDetails {
 
 let details;
 
-const getCoordinates = async (details) => {
+// manually added locations; finding through yr fails most often, 
+// since the addresses are rather inconsistent..
+const knownLocations = {
+  'c5e066ba-cffd-4db7-b4fc-3c5cda091ba6': { // Ålesund
+    'location': "Nørvevika",
+    'coordinate': {
+      'lat': 62.469264, 
+      'lon': 6.20299,
+    }
+  },
+  'fd91ed0d-6e95-48ac-a8cb-b7e1ec22345a': { // Arendal
+    'location': 'Søndre Brattholmene',
+    'coordinate': {
+      lat: 58.433559,
+      lon: 8.793822
+    }
+  },
+  '1a0afe58-4bce-49b0-8b1d-a88d655e3f57': { // KNS
+    'location': 'Huk Aveny 1',
+    coordinate: {
+      lat: 59.907686,
+      lon: 10.694775
+    }
+  },
+  'fc031d09-9300-42d1-9cbc-ee6ad315e4d4': { // Moss
+    'location': 'Strandpromenaden 22',
+    coordinate: {
+      lat: 59.427778,
+      lon: 10.640353
+    }
+  }
+}
+const getCoordinates = async (club) => {
   let retVal = {};
-  let location = details.address ? details.address : details.city;
-  let loc = location.split(' ')[0];
-  await coordinates(loc)
-    .then((c) => {
-      retVal = c;
-    })
-    .catch( (error) => {
-      console.log('error getting coordinates:', error);
-    });
+  const known = knownLocations[club.id];
+  if (known) {
+    retVal = known;
+  } else {
+    let location = known ? known : club.address ? club.address : club.city;
+    let loc = location.split(' ')[0];
+    await coordinates(loc)
+      .then((c) => {
+        retVal = c;
+      })
+      .catch( (error) => {
+        console.log('error getting coordinates:', error);
+      });
+  }
   return retVal;
 }
 

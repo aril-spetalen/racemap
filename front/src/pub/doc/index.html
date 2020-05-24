@@ -98,8 +98,7 @@ textarea {
 
     <div id="map"></div>
     <script>
-      // var map = L.map('map').setView([60.14, 10.25], 11);
-      var map = L.map('map').setView([59.932867, 10.764526], 11);
+      var map = L.map('map').setView([59.692867, 10.764526], 8);
       L.tileLayer('https://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=topo4&zoom={z}&x={x}&y={y}', {
         attribution: '<a href="http://www.kartverket.no/">Kartverket</a>'
       }).addTo(map);
@@ -149,12 +148,12 @@ textarea {
             let races = data.hits.hits;
             races.forEach(race => {
               console.log(race._source.coordinates.coordinate);
-              L.marker([race._source.coordinates.coordinate.lat, race._source.coordinates.coordinate.lon]).addTo(map);
+              var m = L.marker([race._source.coordinates.coordinate.lat, race._source.coordinates.coordinate.lon]);
+              m.bindPopup(`<b>${race._source.name}</b><br>${race._source.clubName}<br><a href=\"https:\/\/manage2sail.com${race._source.link}\">${race._source.name}</a>`).openPopup();
+              m.addTo(map);
             });
+          });
         });
-
-
-      });
       };
 
       window.addEventListener('keydown',function(e) {

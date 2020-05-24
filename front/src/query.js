@@ -8,7 +8,7 @@ let search = function(querystring) {
     client.search({
       index: 'races',
       type: 'race',
-      _source: ['name','clubName', 'fromDate', 'toDate', 'coordinates'],
+      _source: ['name','clubName', 'fromDate', 'toDate', 'coordinates', 'link'],
       size: 5,
       body: {
         query: {
