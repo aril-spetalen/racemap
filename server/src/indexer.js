@@ -16,6 +16,7 @@ let countryCode = 'NOR';
 let baseUrl = 'https://manage2sail.com';
 let racesUrl = `${baseUrl}/no/search?filterYear=${year}&filterMonth=${month}&filterCountry=${countryCode}&filterRegion=&filterClass=&filterClubId=&filterScoring=&paged=false&filterText=`;
 
+// urls to every listed club at manage2sail
 let urls = [`${baseUrl}/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=1`,
             `${baseUrl}/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=2`,
             `${baseUrl}/en-US/Club/SearchClubs?filterCountry=NOR&filterText=&page=3`];
@@ -27,33 +28,43 @@ let clubLink = ((clubId) => {
 let races = {}
 let clubIndex = {}
 
-// function to index data
-// TODO: set up elastic with host and port, ref. 
-// https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/16.x/api-reference.html
+// put a race on the index
+// ref. https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/16.x/api-reference.html
 let putRace = async (race) => {
-  console.log('now putting race to index:', race.regId);
+  console.log('putting race to index:', race.regId);
   race['doctype'] = 'race';
+  // const clubCoordinates = await getIndexedClubCoordinates(race.clubId);
+  // console.log('clubCoordinates:', clubCoordinates);
+  race['coordinates'] = await getIndexedClubCoordinates(race.clubId);
   const response = await elastic.index({
     index: 'races',
     id: race.regId,
     body: race
   })
   .catch( (error) => {
-    console.log('error trying to add club to index:', error);
+    console.log('error trying to add race to index:', error);
   });
 }
 
+let getIndexedClubCoordinates = async (clubId) => {
+  const clubData = await elastic.getSource({
+    index: 'races',
+    id: clubId
+  });
+  return clubData.body.coordinates;
+};
+
 let putClubs = async (clubs) => {
-  const indices = Object.keys(clubs);
-  for(const idx of indices) {
-    console.log('putting club on index, key:', idx);
-    console.log('club:', clubs[idx]);
-    clubs[idx]['doctype'] = 'club';
+  const clubIds = Object.keys(clubs);
+  for(const id of clubIds) {
+    console.log('putting club on index, key:', id);
+    console.log('club:', clubs[id]);
+    clubs[id]['doctype'] = 'club';
 
     const response = await elastic.index({
       index: 'races',
-      id: idx,
-      body: clubs[idx]
+      id: id,
+      body: clubs[id]
     })
     .catch( (error) => {
       console.log('error trying to add club to index:', error);

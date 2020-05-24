@@ -10,11 +10,9 @@
     "dev": "webpack --mode=development",
     "prod": "webpack --mode=production",
     "build": "babel src -d lib",
-    "findregs": "babel-node src/race-finder.js",
-    "findclubs": "babel-node src/club-finder.js",
-    "finddetails": "babel-node src/club-details.js",
     "all": "babel-node src/indexer.js",
     "clubs": "babel-node src/club.js",
+    "race": "babel-node src/race.js",
     "details": "babel-node src/details.js",
     "coordinates": "babel-node src/yr.js"
   },
