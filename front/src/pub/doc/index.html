@@ -11,98 +11,13 @@
         integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
         crossorigin="">
       </script>
-
-      <style>
-form {
-    /* Center the form on the page */
-    margin: 0 auto;
-    width: 600px;
-    /* Form outline */
-    padding: 1em;
-    border: 1px solid #CCC;
-    border-radius: 1em;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-form li + li {
-    margin-top: 1em;
-}
-
-label {
-    /* Uniform size & alignment */
-    display: inline-block;
-    width: 120;
-    text-align: right;
-}
-
-#raceQuery, 
-textarea {
-    /* To make sure that all text fields have the same font settings
-       By default, textareas have a monospace font */
-    font: 1em sans-serif;
-
-    /* Uniform text field size */
-    width: 300px;
-    box-sizing: border-box;
-
-    /* Match form field borders */
-    border: 1px solid #999;
-}
-
-#raceQuery:focus, 
-textarea:focus {
-    /* Additional highlight for focused elements */
-    border-color: #000;
-}
-
-textarea {
-    /* Align multiline text fields with their labels */
-    vertical-align: top;
-
-    /* Provide space to type some text */
-    height: 5em;
-}
-
-
-#searchButton {
-    /* Align buttons with the text fields */
-    padding-left: 10px; /* same size as the label elements */
-    /* This extra margin represent roughly the same space as the space
-       between the labels and their text fields */
-    margin-left: 9em;
-    margin-top: 0.2em;
-    width: 90;
-}
-
-#map {
-    /* Center the map on the page */
-    /* TODO: find out how to set width and height in a good way */
-    margin: 0 auto;
-    width: 100%;
-    height: 400px;
-    /* Outline */
-    padding: 1em;
-    border: 2px solid #CCC;
-    border-radius: 1em;
-}
-
-      </style>
-
+      <link rel="stylesheet" type="text/css" href="race.css" media="screen" />
   </head>
+
   <body>
 
     <div id="map"></div>
-    <script>
-      var map = L.map('map').setView([59.692867, 10.764526], 8);
-      L.tileLayer('https://opencache.statkart.no/gatekeeper/gk/gk.open_gmaps?layers=topo4&zoom={z}&x={x}&y={y}', {
-        attribution: '<a href="http://www.kartverket.no/">Kartverket</a>'
-      }).addTo(map);
-      var marker = L.marker([59.932867, 10.764526]).addTo(map);
+    <script src="maplogic.js">
     </script>
 
     <!-- form onSubmit="return query()" -->
@@ -123,61 +38,61 @@ textarea {
       </div>
     </form>
     <div id='response'>
-      </div>
-
-       <script>
-      var queryInput = document.querySelector('input#raceQuery');
-      var searchButton = document.querySelector('input#searchButton');
-      var searchResult = document.querySelector('#response');
-
-      function performSearch(query) {
-        // build the querystring
-        esQuery = JSON.stringify({"query": query});
-        const url = 'query_handler';
-        console.log('post to query_handler the following query:', esQuery);
-
-        fetch(url, {
-          method: 'POST',
-          headers:{'content-type': 'application/json'},
-          body: esQuery
-        }).then(function(response) {
-          response.json().then((data) => {
-            searchResult.textContent = JSON.stringify(data);
-            console.log("typeof data:", typeof(data));
-            console.log("data.hits:", data.hits);
-            let races = data.hits.hits;
-            races.forEach(race => {
-              console.log(race._source.coordinates.coordinate);
-              var m = L.marker([race._source.coordinates.coordinate.lat, race._source.coordinates.coordinate.lon]);
-              m.bindPopup(`<b>${race._source.name}</b><br>${race._source.clubName}<br><a href=\"https:\/\/manage2sail.com${race._source.link}\">${race._source.name}</a>`).openPopup();
-              m.addTo(map);
+    </div>
+    <script>
+          var queryInput = document.querySelector('input#raceQuery');
+          var searchButton = document.querySelector('input#searchButton');
+          var searchResult = document.querySelector('#response');
+    
+          function performSearch(query) {
+            // build the querystring
+            esQuery = JSON.stringify({"query": query});
+            const url = 'query_handler';
+            console.log('post to query_handler the following query:', esQuery);
+    
+            fetch(url, {
+              method: 'POST',
+              headers:{'content-type': 'application/json'},
+              body: esQuery
+            }).then(function(response) {
+              response.json().then((data) => {
+                searchResult.textContent = JSON.stringify(data);
+                console.log("typeof data:", typeof(data));
+                console.log("data.hits:", data.hits);
+                let races = data.hits.hits;
+                races.forEach(race => {
+                  console.log(race._source.coordinates.coordinate);
+                  var m = L.marker([race._source.coordinates.coordinate.lat, race._source.coordinates.coordinate.lon]);
+                  m.bindPopup(`<b>${race._source.name}</b><br>${race._source.clubName}<br><a href=\"https:\/\/manage2sail.com${race._source.link}\">${race._source.name}</a>`).openPopup();
+                  m.addTo(map);
+                });
+              });
             });
-          });
-        });
-      };
+          };
+    
+          window.addEventListener('keydown',function(e) {
+            if(e.keyIdentifier=='U+000A' || e.keyIdentifier=='Enter' || e.keyCode==13) {
+              if(e.target.nodeName=='INPUT' && e.target.type=='search') {
+                e.preventDefault();
+                return false;
+              }
+            }
+          }, true);
+          // queryInput.onsearch = ( () => {
+          //   var query = queryInput.value;
+          //   performSearch(query);
+          // });
+          searchButton.onclick = ( () => {
+            var query = queryInput.value;
+            performSearch(query);
+          })
+    
+         // performSearch('cup');
+          // queryInput.value = 'cup';
+          // searchButton.click();
+    
+        </script>
 
-      window.addEventListener('keydown',function(e) {
-        if(e.keyIdentifier=='U+000A' || e.keyIdentifier=='Enter' || e.keyCode==13) {
-          if(e.target.nodeName=='INPUT' && e.target.type=='search') {
-            e.preventDefault();
-            return false;
-          }
-        }
-      }, true);
-      // queryInput.onsearch = ( () => {
-      //   var query = queryInput.value;
-      //   performSearch(query);
-      // });
-      searchButton.onclick = ( () => {
-        var query = queryInput.value;
-        performSearch(query);
-      })
-
-      // performSearch('cup');
-      // queryInput.value = 'cup';
-      // searchButton.click();
-
-    </script>
 
   </body>
 </html>
